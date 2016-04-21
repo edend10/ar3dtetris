@@ -235,11 +235,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ca992b570a2414789c6536d9548ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  I: {fileID: 100000, guid: e954968314ef548c0959452e0b74ee72, type: 3}
-  L: {fileID: 100000, guid: 3e2f91c56e84048fb84412c9bd9bc900, type: 3}
-  S: {fileID: 100008, guid: dd1402b9532de4b888efaac3a92c0bf8, type: 3}
-  T: {fileID: 100008, guid: e5b54479ae85f4ee8af34d117234dabb, type: 3}
-  Square: {fileID: 100008, guid: 729c113ac202748e780fb72dfaa02c20, type: 3}
+  I: {fileID: 193750, guid: a6640c96a1fc849a99a6c31d7a34435a, type: 2}
+  L: {fileID: 182418, guid: 1137b33c52e3542d095454e3bf020ac9, type: 2}
+  S: {fileID: 108916, guid: f4dde94e7eea04fc49bcf4cb7f3f93fa, type: 2}
+  T: {fileID: 143638, guid: a7d4818dbdeeb4d748f140e548a16279, type: 2}
+  Square: {fileID: 145408, guid: 77a607f83505e4adeaa143bdaf566f28, type: 2}
   ground: {fileID: 678005800}
   activeBrick: {fileID: 0}
 --- !u!4 &563573128
