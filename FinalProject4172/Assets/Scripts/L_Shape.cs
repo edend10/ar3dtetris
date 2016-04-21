@@ -14,4 +14,25 @@ public class L_Shape : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	public void moveLeft(){
+		Vector3 temp = transform.position;
+		temp += new Vector3 (1, 0, 0);
+		transform.position = temp;
+	}
+	public void moveRight(){
+		Vector3 temp = transform.position;
+		temp += new Vector3 (-1, 0, 0);
+		transform.position = temp;
+	}
+	public void moveForward(){
+		Vector3 temp = transform.position;
+		temp += new Vector3 (0, 0, 1);
+		transform.position = temp;	
+	}
+	public void moveBack(){
+		Vector3 temp = transform.position;
+		temp += new Vector3 (0, 0, -1);
+		transform.position = temp;
+	}
 }

@@ -27,16 +27,20 @@ public class GameController : MonoBehaviour {
 
 		float endTime = Time.time;
 		float time = endTime - startTime;
-		if (time > 5) {
+		if (time > 7) {
+			if (activeBrick != null) {
+				activeBrick.tag = "Untagged";
+			}
 			createBrick ();
 			startTime = Time.time;
+
 		}
 	}
 
 	public void createBrick(){
 		System.Random r = new System.Random ();
 		int number = r.Next (1, 6);
-		GameObject n;
+		GameObject n = null;
 		if (number == 1) {
 			n = Instantiate (I);
 			n.transform.parent = ground.transform;
@@ -58,5 +62,7 @@ public class GameController : MonoBehaviour {
 			n.transform.parent = ground.transform;
 			n.AddComponent <L_Shape>();
 		}
+		n.tag = "active";
+		activeBrick = n;
 	}
 }
