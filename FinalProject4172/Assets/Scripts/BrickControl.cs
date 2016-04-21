@@ -12,7 +12,7 @@ public class BrickControl : MonoBehaviour {
 	const int DIR_POS = 1;
 	const int DIR_NEG = -1;
 	const float ROTATION_DEGREES = 90f;
-	const float TRANSLATION_VALUE = 1f;
+	const float TRANSLATION_VALUE = 2f;
 
 	// Use this for initialization
 	void Start () {
