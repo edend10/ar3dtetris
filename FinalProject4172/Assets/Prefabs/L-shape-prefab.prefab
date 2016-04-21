@@ -24,8 +24,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 432988}
   - 95: {fileID: 9561234}
-  - 64: {fileID: 6406558}
   - 54: {fileID: 5488598}
+  - 65: {fileID: 6521888}
+  - 65: {fileID: 6506034}
   m_Layer: 0
   m_Name: L-shape-prefab
   m_TagString: Untagged
@@ -330,10 +331,10 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 122
   m_CollisionDetection: 0
---- !u!64 &6406558
-MeshCollider:
+--- !u!65 &6506034
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -342,8 +343,20 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: -1, y: 2, z: 0}
+--- !u!65 &6521888
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107946}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 1, z: 1}
+  m_Center: {x: -2, y: 1, z: 0}
 --- !u!95 &9561234
 Animator:
   serializedVersion: 3
