@@ -12,25 +12,44 @@ public class GameController : MonoBehaviour {
 
 	public GameObject ground;
 
+	float startTime;
+
 	// Use this for initialization
 	void Start () {
-
-
+		startTime = Time.time;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+		float endTime = Time.time;
+		float time = endTime - startTime;
+		if (time > 5) {
+			createBrick ();
+			startTime = Time.time;
+		}
 	}
 
 	public void createBrick(){
 		System.Random r = new System.Random ();
 		int number = r.Next (1, 6);
 		GameObject newObject;
+		GameObject n;
 		if (number == 1) {
-			newObject = Instantiate (I);
+			n = Instantiate (I);
+			n.transform.parent = ground.transform;
+		} else if (number == 2) {
+			n = Instantiate (L);
+			n.transform.parent = ground.transform;
+		} else if (number == 3) {
+			n = Instantiate (S);
+			n.transform.parent = ground.transform;
+		} else if (number == 4) {
+			n = Instantiate (T);
+			n.transform.parent = ground.transform;
+		} else if (number == 5) {
+			n = Instantiate (Square);
+			n.transform.parent = ground.transform;
 		}
-
-
 	}
 }
