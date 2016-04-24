@@ -21,10 +21,12 @@ public class BrickControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		GameObject[] temp = GameObject.FindGameObjectsWithTag("active");
-		if (temp.Length > 0) {
-			activeBrick = temp [0];
-		
+		GameObject temp = GameObject.Find("temp");
+		//GameObject[] temp = GameObject.FindGameObjectsWithTag("active");
+		//activeBrick = GameController.activeBrick;
+		//if(activeBrick != null) {
+		if (temp != null) {
+			activeBrick = temp;
 
 			//rotation examples:
 			//for direction: DIR_POS/DIR_NEG. AXIS_X/AXIS_Y/AXIS_Z for axes
