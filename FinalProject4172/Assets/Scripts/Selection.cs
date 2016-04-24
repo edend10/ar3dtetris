@@ -24,18 +24,21 @@ public class Selection : MonoBehaviour {
 		Ray ray = new Ray(cam.position, cam.forward);
 
 		if (Physics.Raycast (ray, out hit)) {
-			center.fontSize = 14;
+			
 			GameObject o = hit.collider.gameObject;
 			if (o == hitObject) {
+				center.fontSize += 8;
 				float endTime = Time.time;
 				float time = endTime - startTime;
 				if (time > 2) {
 					Debug.Log ("Raycast: " + hit.collider.gameObject);
 					selectedObject = hitObject;
+					center.color = Color.red;
 				}
 				
 			} else {
 				startTime = Time.time;
+				hitObject = o;
 			}
 		} else {
 			center.fontSize = 12;
