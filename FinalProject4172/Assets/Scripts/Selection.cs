@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class Selection : MonoBehaviour {
 
+	public Text center;
+
 	// Use this for initialization
 	void Start () {
 	
