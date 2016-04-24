@@ -5,7 +5,7 @@ public class L_Shape : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		transform.position = new Vector3 (0, 5, 0);
+		transform.position = new Vector3 (0, 12, 0);
 		transform.localScale = new Vector3 (0.2f, 0.2f, 0.2f);
 	
 	}
@@ -13,5 +13,26 @@ public class L_Shape : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	public void moveLeft(){
+		Vector3 temp = transform.position;
+		temp += new Vector3 (1, 0, 0);
+		transform.position = temp;
+	}
+	public void moveRight(){
+		Vector3 temp = transform.position;
+		temp += new Vector3 (-1, 0, 0);
+		transform.position = temp;
+	}
+	public void moveForward(){
+		Vector3 temp = transform.position;
+		temp += new Vector3 (0, 0, 1);
+		transform.position = temp;	
+	}
+	public void moveBack(){
+		Vector3 temp = transform.position;
+		temp += new Vector3 (0, 0, -1);
+		transform.position = temp;
 	}
 }

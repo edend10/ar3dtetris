@@ -12,56 +12,51 @@ public class BrickControl : MonoBehaviour {
 	const int DIR_POS = 1;
 	const int DIR_NEG = -1;
 	const float ROTATION_DEGREES = 90f;
-	const float TRANSLATION_VALUE = 1f;
+	const float TRANSLATION_VALUE = 2f;
 
 	// Use this for initialization
 	void Start () {
-		activeBrick = GameObject.Find ("tempbrick"); //temp
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//rotation examples:
-		//for direction: DIR_POS/DIR_NEG. AXIS_X/AXIS_Y/AXIS_Z for axes
-		if(Input.GetKeyDown("q")){ 
-			RotateBrick (AXIS_X, DIR_POS);
-		}
-		else if(Input.GetKeyDown("a")){
-			RotateBrick (AXIS_X, DIR_NEG);
-		}
-		else if(Input.GetKeyDown("w")){
-			RotateBrick (AXIS_Y, DIR_POS);
-		}
-		else if(Input.GetKeyDown("s")){
-			RotateBrick (AXIS_Y, DIR_NEG);
-		}
-		else if(Input.GetKeyDown("e")){
-			RotateBrick (AXIS_Z, DIR_POS);
-		}
-		else if(Input.GetKeyDown("d")){
-			RotateBrick (AXIS_Z, DIR_NEG);
-		}
+		GameObject[] temp = GameObject.FindGameObjectsWithTag("active");
+		if (temp.Length > 0) {
+			activeBrick = temp [0];
+		
 
-		//translation examples:
-		if(Input.GetKeyDown("r")){ 
-			TranslateBrick (AXIS_X, DIR_POS);
-		}
-		else if(Input.GetKeyDown("f")){
-			TranslateBrick (AXIS_X, DIR_NEG);
-		}
-		else if(Input.GetKeyDown("t")){
-			TranslateBrick (AXIS_Y, DIR_POS);
-		}
-		else if(Input.GetKeyDown("g")){
-			TranslateBrick (AXIS_Y, DIR_NEG);
-		}
-		else if(Input.GetKeyDown("y")){
-			TranslateBrick (AXIS_Z, DIR_POS);
-		}
-		else if(Input.GetKeyDown("h")){
-			TranslateBrick (AXIS_Z, DIR_NEG);
-		}
+			//rotation examples:
+			//for direction: DIR_POS/DIR_NEG. AXIS_X/AXIS_Y/AXIS_Z for axes
+			if (Input.GetKeyDown ("q")) { 
+				RotateBrick (AXIS_X, DIR_POS);
+			} else if (Input.GetKeyDown ("a")) {
+				RotateBrick (AXIS_X, DIR_NEG);
+			} else if (Input.GetKeyDown ("w")) {
+				RotateBrick (AXIS_Y, DIR_POS);
+			} else if (Input.GetKeyDown ("s")) {
+				RotateBrick (AXIS_Y, DIR_NEG);
+			} else if (Input.GetKeyDown ("e")) {
+				RotateBrick (AXIS_Z, DIR_POS);
+			} else if (Input.GetKeyDown ("d")) {
+				RotateBrick (AXIS_Z, DIR_NEG);
+			}
 
+			//translation examples:
+			if (Input.GetKeyDown ("r")) { 
+				TranslateBrick (AXIS_X, DIR_POS);
+			} else if (Input.GetKeyDown ("f")) {
+				TranslateBrick (AXIS_X, DIR_NEG);
+			} else if (Input.GetKeyDown ("t")) {
+				TranslateBrick (AXIS_Y, DIR_POS);
+			} else if (Input.GetKeyDown ("g")) {
+				TranslateBrick (AXIS_Y, DIR_NEG);
+			} else if (Input.GetKeyDown ("y")) {
+				TranslateBrick (AXIS_Z, DIR_POS);
+			} else if (Input.GetKeyDown ("h")) {
+				TranslateBrick (AXIS_Z, DIR_NEG);
+			}
+		}
 	}
 
 	void TranslateBrick(int axis, int dir) {

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 3e2f91c56e84048fb84412c9bd9bc900
-timeCreated: 1461211239
+guid: 4897cb0f88a2a4d7bb92f4601aa1ec8a
+timeCreated: 1461214968
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -8,43 +8,48 @@ ModelImporter:
     100000: //RootNode
     100002: pCube1
     100004: pCube2
-    100006: pCube3
-    100008: pCube4
-    100010: pCube5
-    100012: transform1
-    100014: transform2
-    100016: transform3
-    100018: transform4
-    100020: pCube6
+    100006: pCube6
+    100008: pCube7
+    100010: pCube8
+    100012: persp1
+    100014: polySurface1
+    100016: polySurface1 1
+    100018: polySurface2
+    100020: polySurface3
+    100022: polySurface4
+    100024: transform1
+    100026: transform2
+    100028: transform3
+    100030: transform4
+    100032: transform5
+    100034: transform6
+    100036: transform7
+    100038: transform8
+    100040: transform9
     400000: //RootNode
     400002: pCube1
     400004: pCube2
-    400006: pCube3
-    400008: pCube4
-    400010: pCube5
-    400012: transform1
-    400014: transform2
-    400016: transform3
-    400018: transform4
-    400020: pCube6
-    2300000: pCube1
-    2300002: pCube2
-    2300004: pCube3
-    2300006: pCube4
-    2300008: pCube5
-    2300010: pCube6
-    3300000: pCube1
-    3300002: pCube2
-    3300004: pCube3
-    3300006: pCube4
-    3300008: pCube5
-    3300010: pCube6
-    4300000: pCube1
-    4300002: pCube2
-    4300004: pCube3
-    4300006: pCube4
-    4300008: pCube5
-    4300010: pCube6
+    400006: pCube6
+    400008: pCube7
+    400010: pCube8
+    400012: persp1
+    400014: polySurface1
+    400016: polySurface1 1
+    400018: polySurface2
+    400020: polySurface3
+    400022: polySurface4
+    400024: transform1
+    400026: transform2
+    400028: transform3
+    400030: transform4
+    400032: transform5
+    400034: transform6
+    400036: transform7
+    400038: transform8
+    400040: transform9
+    2300000: polySurface1
+    3300000: polySurface1
+    4300000: polySurface1
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -70,7 +75,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 100
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

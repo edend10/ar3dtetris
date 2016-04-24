@@ -18,25 +18,35 @@ public class GameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		startTime = Time.time;
+		//startTime = Time.time;
+		createBrick();
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+		/*
 		float endTime = Time.time;
 		float time = endTime - startTime;
-		if (time > 5) {
+		if (time > 7) {
+			if (activeBrick != null) {
+				activeBrick.tag = "Untagged";
+			}
 			createBrick ();
 			startTime = Time.time;
+
 		}
+		*/
 	}
 
 	public void createBrick(){
+		if (activeBrick != null) {
+			activeBrick.tag = "Untagged";
+		}
+
 		System.Random r = new System.Random ();
 		int number = r.Next (1, 6);
-		GameObject n;
+		GameObject n = null;
 		if (number == 1) {
 			n = Instantiate (I);
 			n.transform.parent = ground.transform;
@@ -58,5 +68,17 @@ public class GameController : MonoBehaviour {
 			n.transform.parent = ground.transform;
 			n.AddComponent <L_Shape>();
 		}
+		n.tag = "active";
+		activeBrick = n;
+	}
+
+	private void OnEnable()
+	{
+		DropBrickVirtualButtonEventHandler.drop += createBrick;
+	}
+
+	private void OnDisable()
+	{
+		DropBrickVirtualButtonEventHandler.drop -= createBrick;
 	}
 }
