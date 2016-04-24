@@ -3,7 +3,6 @@ using System.Collections;
 
 public class LevelDestruction : MonoBehaviour {
 
-	static int blockCount;
 	ArrayList childBlocks = new ArrayList();
 
 
@@ -16,25 +15,29 @@ public class LevelDestruction : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (blockCount == 25)
+		if (childBlocks.Count == 25)
 			destroyLevel (); 
 	
 	}
 
 	void onCollisionEnter(Collision block) {
 
-		++blockCount;
-		childBlocks.Add (block.rigidbody);
+		childBlocks.Add (&block.rigidbody);
+		Debug.Log ("added " + block.ToString () + " size: " + childBlocks.Count);
 
 	}
 
 	void onCollisionExit(Collision block) {
-		--blockCount;
-		childBlocks.Remove (block.rigidbody);
+		
+		childBlocks.RemoveAt (&childBlocks.Count);
+		Debug.Log ("removed " + block.ToString () + " size: " + childBlocks.Count);
+
 	}
 
 
 	void destroyLevel() {
-		
+		for (int i = 0; i <= 25; ++i) {
+			Destroy (childBlocks [i]);
+		}
 	}
 }
