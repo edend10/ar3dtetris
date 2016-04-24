@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LevelDestruction : MonoBehaviour {
 
-	ArrayList<GameObject> childBlocks = new ArrayList();
+	ArrayList childBlocks = new ArrayList();
 	GameObject currentChild;
 
 
@@ -30,13 +30,13 @@ public class LevelDestruction : MonoBehaviour {
 		
 		childBlocks.RemoveAt (childBlocks.Count);
 		Debug.Log ("removed " + block.rigidbody.gameObject.ToString () + " size: " + childBlocks.Count);
-
 	}
 
 
 	void destroyLevel() {
 		for (int i = 0; i <= 25; ++i) {
-			childBlocks [i].setActive (false); 
+			currentChild = (GameObject)childBlocks [i];
+			currentChild.SetActive (false);
 		}
 	}
 }
