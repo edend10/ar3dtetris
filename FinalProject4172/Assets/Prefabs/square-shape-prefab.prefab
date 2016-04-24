@@ -49,7 +49,7 @@ GameObject:
   - 23: {fileID: 2378740}
   - 54: {fileID: 5408350}
   m_Layer: 0
-  m_Name: Square-shape-prefab
+  m_Name: square-shape-prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

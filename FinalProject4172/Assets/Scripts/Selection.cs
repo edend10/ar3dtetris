@@ -27,7 +27,7 @@ public class Selection : MonoBehaviour {
 			
 			GameObject o = hit.collider.gameObject;
 			if (o == hitObject) {
-				center.fontSize += 8;
+				center.fontSize += 2;
 				float endTime = Time.time;
 				float time = endTime - startTime;
 				if (time > 2) {
@@ -42,6 +42,7 @@ public class Selection : MonoBehaviour {
 			}
 		} else {
 			center.fontSize = 12;
+			center.color = Color.black;
 		}
 	
 	}
