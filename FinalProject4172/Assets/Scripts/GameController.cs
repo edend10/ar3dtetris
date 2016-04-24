@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour {
 
 	float startTime;
 
-	public GameObject activeBrick;
+	public static GameObject activeBrick;
 
 	// Use this for initialization
 	void Start () {
