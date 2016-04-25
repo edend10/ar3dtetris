@@ -20,7 +20,6 @@ public class GameController : MonoBehaviour {
 	void Start () {
 		//startTime = Time.time;
 		createBrick();
-		Debug.Log ("test");
 
 	}
 	
@@ -41,7 +40,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void createBrick(){
-		Debug.Log ("create brick");
+
 		if (activeBrick != null) {
 			activeBrick.tag = "Untagged";
 		}
@@ -72,13 +71,29 @@ public class GameController : MonoBehaviour {
 		activeBrick = n;
 	}
 
+
+	void mySelect(Touch touch){
+		GameObject[] temp = GameObject.FindGameObjectsWithTag("active");
+		if (temp.Length > 0) {
+			activeBrick = temp [0];
+			Rigidbody r = activeBrick.GetComponents<Rigidbody> ()[0];
+			r.useGravity = true;
+		}
+
+		createBrick ();
+		
+	}
+
 	private void OnEnable()
 	{
 		DropBrickVirtualButtonEventHandler.drop += createBrick;
+		UserInputHandler.OnTap += mySelect;
 	}
 
 	private void OnDisable()
 	{
 		DropBrickVirtualButtonEventHandler.drop -= createBrick;
+		UserInputHandler.OnTap -= mySelect;
 	}
+
 }
