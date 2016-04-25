@@ -19,6 +19,7 @@ namespace Vuforia
 
         private static DigitalEyewearBehaviour mDigitalEyewearBehaviour = null;
 
+		EyewearType t;
         /// <summary>
         /// A simple static singleton getter to the DigitalEyewearBehaviour (if present in the scene)
         /// Will return null if no DigitalEyewearBehaviour has been instanciated in the scene.
