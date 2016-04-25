@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour {
 	void Start () {
 		//startTime = Time.time;
 		createBrick();
+		Debug.Log ("test");
 
 	}
 	
@@ -40,6 +41,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void createBrick(){
+		Debug.Log ("create brick");
 		if (activeBrick != null) {
 			activeBrick.tag = "Untagged";
 		}
@@ -49,25 +51,23 @@ public class GameController : MonoBehaviour {
 		GameObject n = null;
 		if (number == 1) {
 			n = Instantiate (I);
-			n.transform.parent = ground.transform;
-			n.AddComponent <L_Shape>();
+
 		} else if (number == 2) {
 			n = Instantiate (L);
-			n.transform.parent = ground.transform;
-			n.AddComponent <L_Shape>();
+
 		} else if (number == 3) {
 			n = Instantiate (S);
-			n.transform.parent = ground.transform;
-			n.AddComponent <L_Shape>();
+
 		} else if (number == 4) {
 			n = Instantiate (T);
-			n.transform.parent = ground.transform;
-			n.AddComponent <L_Shape>();
+
 		} else if (number == 5) {
 			n = Instantiate (Square);
-			n.transform.parent = ground.transform;
-			n.AddComponent <L_Shape>();
+
 		}
+		n.transform.parent = ground.transform;
+		n.AddComponent <L_Shape>();
+
 		n.tag = "active";
 		activeBrick = n;
 	}
