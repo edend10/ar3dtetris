@@ -48,6 +48,7 @@ public class GameController : MonoBehaviour {
 
 		System.Random r = new System.Random ();
 		int number = r.Next (1, 6);
+		//int number = 2;
 		GameObject n = null;
 		if (number == 1) {
 			n = Instantiate (I);
