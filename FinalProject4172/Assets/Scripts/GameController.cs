@@ -18,25 +18,26 @@ public class GameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//startTime = Time.time;
+		startTime = Time.time;
 		createBrick();
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		/*
+		
 		float endTime = Time.time;
 		float time = endTime - startTime;
-		if (time > 7) {
+		if (time > 5) {
 			if (activeBrick != null) {
 				activeBrick.tag = "Untagged";
 			}
+			Rigidbody r = activeBrick.GetComponents<Rigidbody> ()[0];
+			r.useGravity = true;
 			createBrick ();
 			startTime = Time.time;
-
 		}
-		*/
+
 	}
 
 	public void createBrick(){
