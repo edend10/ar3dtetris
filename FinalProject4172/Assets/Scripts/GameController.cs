@@ -9,20 +9,31 @@ public class GameController : MonoBehaviour {
 	public GameObject S;
 	public GameObject T;
 	public GameObject Square;
+	BrickControl brickControl;
 
-	public GameObject ground;
 
 	float startTime;
 
 	public static GameObject activeBrick;
+	public static GameObject wand;
+	public static GameObject wandTip;
+	public static GameObject environment;
+	public static GameObject ground;
 
 	// Use this for initialization
 	void Start () {
+		//set global refs
+		wand = GameObject.Find ("Wand");
+		wandTip = GameObject.Find ("WandTip");
+		environment = GameObject.Find ("Environment");
+		ground = GameObject.Find ("Ground");
+		brickControl = gameObject.GetComponent<BrickControl> ();
+
 		startTime = Time.time;
 		createBrick();
 
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		
@@ -66,11 +77,14 @@ public class GameController : MonoBehaviour {
 			n = Instantiate (Square);
 
 		}
-		n.transform.parent = ground.transform;
+		n.transform.parent = environment.transform;
 		n.AddComponent <L_Shape>();
+
+
 
 		n.tag = "active";
 		activeBrick = n;
+		brickControl.initBrickPos ();
 	}
 
 

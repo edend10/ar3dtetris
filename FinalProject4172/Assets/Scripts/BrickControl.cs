@@ -3,14 +3,23 @@ using System.Collections;
 
 public class BrickControl : MonoBehaviour {
 
+	//this script needs to be attached to the same GameObject as the GameController
+
 	GameObject activeBrick;
-	GameObject wand, wandTip;
+	GameObject wand;
+	GameObject wandTip;
+	GameObject env;
+	GameObject ground;
 	Vector3[,] grid;
+	int manipulationMode;
 	int activeBrickGridX;
 	int activeBrickGridZ;
-	int manipulationMode;
 	float endRotationPause;
+	Vector3 oldRot;
 	public GameObject tempGrid;
+
+
+
 
 
 
@@ -24,37 +33,37 @@ public class BrickControl : MonoBehaviour {
 	const float TRANSLATION_VALUE = 2f;
 	const float ROTATION_GESTURE_THRESHOLD = 15f;
 	const float ROTATION_TOGGLE_THRESHOLD = 60f;
-	const int GRID_SIZE = 5;
 	const int ROTATION_MODE = 0;
 	const int TRANSLATION_MODE = 1;
 	const float ROTATION_PAUSE = 1f;
+	const int GRID_SIZE = 5;
+
+
+
 
 	// Use this for initialization
-	Vector3 oldRot;
-	GameObject env;
-	GameObject ground;
-
 	void Start () {
-		GameObject temp = GameObject.Find("temp");
-		if (temp != null) {
-			activeBrick = temp;
-		}
+		//a debug brick
+//		GameObject temp = GameObject.Find("TestBrick");
+//		if (temp != null) {
+//			activeBrick = temp;
+//		}
 
-		endRotationPause = 0;
+		endRotationPause = 0; //rotation cooldown timer reset after each rotation
 		manipulationMode = 0;
 		activeBrickGridX = GRID_SIZE / 2;
 		activeBrickGridZ = GRID_SIZE / 2;
 		wand = GameController.wand;
 		wandTip = GameController.wandTip;
 		oldRot = wand.transform.eulerAngles;
-		env = GameObject.Find ("Environment");
-		ground = GameObject.Find ("Ground");
+		env = GameController.environment;
+		ground = GameController.ground;
 		Renderer envRenderer = env.transform.GetComponent<Renderer> ();
 
 		float area = envRenderer.bounds.size.x * envRenderer.bounds.size.z;
 
 
-		//groundRenderer.bounds.center;
+		//creates a GRID_SIZE by GRID_SIZE (5x5 right now) grid on the image target so that bricks will snap to it
 		grid = new Vector3[GRID_SIZE, GRID_SIZE];
 		float gridSquareCenterOffset = 1f / (float)GRID_SIZE / 2f;
 		for (int i = 0; i < GRID_SIZE; i++) {
@@ -64,26 +73,20 @@ public class BrickControl : MonoBehaviour {
 			}
 		}
 
-		Vector3 gridPos = grid [activeBrickGridX, activeBrickGridZ];
-		activeBrick.transform.localPosition = new Vector3(gridPos.x, activeBrick.transform.localPosition.y, gridPos.z);
 
-		//Debug.Log (area);
 	}
 	
 	// Update is called once per frame
-	void Update () {
-
-		//old rotation
-		//Vector3 currRot = wand.transform.eulerAngles;
-		//temp.transform.eulerAngles = new Vector3 (currRot.x - (currRot.x % 90), currRot.y - (currRot.y % 90), currRot.z - (currRot.z % 90));
-
+	void Update () {		
 		Vector3 currRot = wand.transform.eulerAngles;
+
+		//set manipulation mode
+		//if wand is upright relative to the board, we are at rotation mode. Otherwise translation mode
 		if ((currRot.x > 360 - ROTATION_TOGGLE_THRESHOLD || currRot.x < 0 + ROTATION_GESTURE_THRESHOLD) && (currRot.z > 360 - ROTATION_TOGGLE_THRESHOLD || currRot.z < 0 + ROTATION_TOGGLE_THRESHOLD)) {
 			manipulationMode = ROTATION_MODE;
 		} else {
 			manipulationMode = TRANSLATION_MODE;
 		}
-		//Debug.Log (currRot.x);
 		switch (manipulationMode) {
 		case ROTATION_MODE:
 		Debug.Log ("rotation mode");
@@ -93,7 +96,10 @@ public class BrickControl : MonoBehaviour {
 			break;
 		}
 
-
+		//rotation
+		//per-axis 90 degree rotation of brick instigated by "gestures" with the wand (rotate until surpass angle threshold)
+		//after rotation a 1 second cooldown rotation pause starts to prevent undoing the rotation when wand is being put back to original position with a counter-gesture
+		//before executing actual rotation each individual cube's location is tested whether it will be outside the board's bounds after rotation (rotation aborted in such a case)
 		if (manipulationMode == ROTATION_MODE && endRotationPause - Time.time <= 0) {
 			float x = currRot.x - oldRot.x;
 			float y = currRot.y - oldRot.y;
@@ -127,7 +133,9 @@ public class BrickControl : MonoBehaviour {
 
 
 		}
-	//translate
+	//translation:
+	//Track sphere at tip of wand and snap active brick to grid square on the board that's closest to the tip
+	//before actually executing the translation, iterate through individual cubes to make sure the translate won't put any of them outside the board
 	else if (manipulationMode == TRANSLATION_MODE) {
 			Vector3 currTrans = env.transform.InverseTransformPoint (wandTip.transform.position);
 			float dist = 0;
@@ -155,6 +163,7 @@ public class BrickControl : MonoBehaviour {
 			Bounds groundBounds = new Bounds ();
 			groundBounds.SetMinMax (ngbMin, ngbMax);
 
+			//iterate through brick's children (individual cubes) and make sure they will all be within board bounds after translate
 			foreach (Transform c in activeBrick.GetComponentInChildren<Transform>()) {
 				//if at least one brick out of bounds with this grid position abort
 				if (!groundBounds.Contains (c.position + translateDelta)) {								
@@ -172,6 +181,7 @@ public class BrickControl : MonoBehaviour {
 
 
 		//translate/rotate with keyboard for debugging:
+		//awsd for left/forward/back/right and fthgcv for rotations
 		//for direction: DIR_POS/DIR_NEG. AXIS_X/AXIS_Y/AXIS_Z for axes
 		if (Input.GetKeyDown ("f")) { 
 			RotateBrick (AXIS_X, DIR_POS);
@@ -196,14 +206,17 @@ public class BrickControl : MonoBehaviour {
 			TranslateBrick (AXIS_Z, DIR_POS);
 		} else if (Input.GetKeyDown ("s")) {
 			TranslateBrick (AXIS_Z, DIR_NEG);
-		} else if (Input.GetKeyDown ("z")) {
-			TranslateBrick (AXIS_Y, DIR_POS);
-		} else if (Input.GetKeyDown ("x")) {
-			TranslateBrick (AXIS_Y, DIR_NEG);
 		}
 
-		//debug grid positions (creates small cubes on grid):
-		//need to add "temp" prefab to script's "tempGrid" public variable
+//vertical translate deprecated
+//		else if (Input.GetKeyDown ("z")) {
+//			TranslateBrick (AXIS_Y, DIR_POS);
+//		} else if (Input.GetKeyDown ("x")) {
+//			TranslateBrick (AXIS_Y, DIR_NEG);
+//		}
+
+		//debug grid positions (creates small 3D cubes on grid to show positions):
+		//need to add a cube prefab to script's "tempGrid" public variable in editor
 		if (Input.GetKeyDown ("k")) {
 
 			for (int i = 0; i < GRID_SIZE; i++) {
@@ -221,9 +234,10 @@ public class BrickControl : MonoBehaviour {
 
 	}
 
+	//TranslateBrick method used for keyboard translation (debugging)
 	void TranslateBrick(int axis, int dir) {
 
-		Vector3 translateDelta = new Vector3 (0, 0, 0);
+		Vector3 translateDelta = new Vector3 (0, 0, 0); //used for bounds check
 
 		switch (axis) {
 		case AXIS_X:
@@ -277,6 +291,7 @@ public class BrickControl : MonoBehaviour {
 
 	}
 
+	//RotateBrick method used for BOTH wand rotation (game) and keyboard rotation (debugging)
 	void RotateBrick(int axis, int dir) {
 
 		float angleInRad = Mathf.Deg2Rad * ROTATION_DEGREES;
@@ -307,7 +322,8 @@ public class BrickControl : MonoBehaviour {
 		Bounds groundBounds = new Bounds ();
 		groundBounds.SetMinMax (ngbMin, ngbMax);
 
-		//create translates for individual cubes to test they will be in bounds
+		//bounds check
+		//create translates for individual cubes to test they will be in bounds post rotation. Abort rotation if at least one would be outside.
 		Vector3 brickCenter = activeBrick.transform.position;
 		foreach (Transform c in activeBrick.GetComponentInChildren<Transform>()) {
 			Vector3 diff = c.position - brickCenter;
@@ -332,21 +348,23 @@ public class BrickControl : MonoBehaviour {
 			Vector3 newChildPosition = new Vector3(rx,ry,rz);
 			if(!groundBounds.Contains(newChildPosition)) {	
 				//if at least one cube is out of bounds the rotation is aborted
-
 				return;
 			}
-
 		}
+		//end of bounds check
 
-
-
-
-		//activeBrick.transform.eulerAngles = new Vector3(x,y,z);
 		activeBrick.transform.Rotate(x,y,z, Space.World);
+		endRotationPause = Time.time + ROTATION_PAUSE; //set rotation pause to prevent rotating the brick in counter direction when bringing wand back to original orientation
 
+	}
+		
 
-
-		endRotationPause = Time.time + ROTATION_PAUSE;
-
+	public void initBrickPos() {
+		//move active brick to initial position
+		activeBrick = GameController.activeBrick;
+		activeBrickGridX = GRID_SIZE / 2;
+		activeBrickGridZ = GRID_SIZE / 2;
+		Vector3 gridPos = grid [activeBrickGridX, activeBrickGridZ];
+		activeBrick.transform.localPosition = new Vector3(gridPos.x, activeBrick.transform.localPosition.y, gridPos.z);
 	}
 }
