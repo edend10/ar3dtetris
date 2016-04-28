@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 476692}
   - 23: {fileID: 2382816}
   - 54: {fileID: 5430508}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: L-shape-prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ GameObject:
   - 23: {fileID: 2344792}
   - 95: {fileID: 9584954}
   - 65: {fileID: 6535044}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: single-brick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - 23: {fileID: 2398978}
   - 95: {fileID: 9593992}
   - 65: {fileID: 6526584}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: single-brick (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   - 23: {fileID: 2383360}
   - 95: {fileID: 9534030}
   - 65: {fileID: 6564444}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: single-brick (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - 23: {fileID: 2320150}
   - 95: {fileID: 9527606}
   - 65: {fileID: 6504350}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: single-brick (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
