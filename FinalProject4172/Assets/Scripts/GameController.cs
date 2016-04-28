@@ -43,9 +43,10 @@ public class GameController : MonoBehaviour {
 			if (activeBrick != null) {
 				activeBrick.tag = "Untagged";
 			}
+
+			createBrick ();
 			Rigidbody r = activeBrick.GetComponents<Rigidbody> ()[0];
 			r.useGravity = true;
-			createBrick ();
 			startTime = Time.time;
 		}
 
