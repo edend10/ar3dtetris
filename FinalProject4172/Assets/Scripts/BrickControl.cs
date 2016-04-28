@@ -41,6 +41,7 @@ public class BrickControl : MonoBehaviour {
 //			activeBrick = temp;
 //		}
 
+		activeBrick = GameController.activeBrick;
 		endRotationPause = 0; //rotation cooldown timer reset after each rotation
 		manipulationMode = 0;
 		activeBrickGridX = GRID_SIZE / 2;
