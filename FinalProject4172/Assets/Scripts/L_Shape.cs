@@ -7,7 +7,6 @@ public class L_Shape : MonoBehaviour {
 	void Start () {
 		transform.position = new Vector3 (0, 12, 0);
 		transform.localScale = new Vector3 (20, 20, 20);
-	
 	}
 	
 	// Update is called once per frame
