@@ -5,7 +5,7 @@ public class LevelDestruction : MonoBehaviour {
 
 	ArrayList childBlocks = new ArrayList();
 	GameObject currentChild;
-	int numToClear = 5;
+	int numToClear = 20;
 
 
 
@@ -23,7 +23,6 @@ public class LevelDestruction : MonoBehaviour {
 	}
 
 	void CheckIfFull() {
-		Debug.Log ("check " + Time.time);
 		if (childBlocks.Count >= numToClear) {
 			DestroyLevel ();
 		}
@@ -33,14 +32,11 @@ public class LevelDestruction : MonoBehaviour {
 
 		int arrSize = childBlocks.Count;
 
-		Debug.Log ("DestroyLevel " + Time.time + " " + gameObject.name);
-
 		while (childBlocks.Count > 0) {
 			currentChild = (GameObject)childBlocks [childBlocks.Count-1];
 			Debug.Log (currentChild.ToString () + " is trashed"); 
-
+			childBlocks.RemoveAt (childBlocks.Count-1);
 			currentChild.SetActive (false);
-			childBlocks.Remove (currentChild);
 		}
 
 		Debug.Log (childBlocks.Count);
@@ -54,7 +50,6 @@ public class LevelDestruction : MonoBehaviour {
 	}
 
 	void OnTriggerExit (Collider block) {
-		Debug.Log ("hello");
 		childBlocks.RemoveAt(childBlocks.Count-1);
 		Debug.Log (gameObject.name + " removed " + block.gameObject.ToString () + " size: " + childBlocks.Count);
 	}
