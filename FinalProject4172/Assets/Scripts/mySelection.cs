@@ -5,7 +5,10 @@ using UnityEngine.UI;
 public class mySelection : MonoBehaviour
 {
 	
-	//public GameObject center;
+	public GameObject center;
+	public Material normalMaterial;
+	public Material selectedMaterial;
+
 	GameObject hitObject;
 
 	GameObject selectedObject;
@@ -34,13 +37,15 @@ public class mySelection : MonoBehaviour
 			if (o == selectedObject) {
 				
 			} else if (o == hitObject) {
-				//center.fontSize += 1;
+				center.transform.localScale += new Vector3(1,1,1);
+
 				float endTime = Time.time;
 				float time = endTime - startTime;
 				if (time > 2) {
 					Debug.Log ("Raycast: " + hit.collider.gameObject);
 					selectedObject = hitObject;
-					//center.color = Color.red;
+					Renderer r = center.GetComponents<Renderer>()[0];
+					r.material = selectedMaterial;
 					selectedObject.SendMessage ("youAreSelected");
 				}
 								
@@ -49,8 +54,10 @@ public class mySelection : MonoBehaviour
 				hitObject = o;
 			}
 		} else {
-			//center.fontSize = 12;
-			//center.color = Color.black;
+			center.transform.localScale = new Vector3(1,1,1);
+
+			Renderer r = center.GetComponents<Renderer>()[0];
+			r.material = normalMaterial;
 			hitObject = null;
 		}
 			
