@@ -5,7 +5,7 @@ public class LevelDestruction : MonoBehaviour {
 
 	ArrayList childBlocks = new ArrayList();
 	GameObject currentChild;
-	int numToClear = 3;
+	int numToClear = 25;
 
 
 	// Use this for initialization
@@ -15,26 +15,19 @@ public class LevelDestruction : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (childBlocks.Count == numToClear)
+		if (childBlocks.Count >= numToClear)
 			destroyLevel (); 
 	
 	}
 
-	//void onCollisionEnter(Collision block) {
 	void OnTriggerEnter(Collider block) {
-		Debug.Log ("enter " + block.name);
-	//	childBlocks.Add (block.rigidbody.gameObject);
 		childBlocks.Add(block.gameObject);
-	//	Debug.Log ("added " + block.rigidbody.gameObject.ToString () + " size: " + childBlocks.Count);
 		Debug.Log ("added " + block.gameObject.ToString () + " size: " + childBlocks.Count);
 
 	}
 
-	//void onCollisionExit(Collision block) {
 	void OnTriggerExit (Collider block) {
-		Debug.Log ("exit " + block.name);
-		childBlocks.RemoveAt (childBlocks.Count);
-		//Debug.Log ("removed " + block.rigidbody.gameObject.ToString () + " size: " + childBlocks.Count);
+		childBlocks.Remove(block.gameObject);
 		Debug.Log ("removed " + block.gameObject.ToString () + " size: " + childBlocks.Count);
 	}
 
@@ -44,9 +37,9 @@ public class LevelDestruction : MonoBehaviour {
 		for (int i = 0; i <= numToClear; ++i) {
 			currentChild = (GameObject)childBlocks [i];
 			currentChild.SetActive (false);
+			childBlocks.Remove (currentChild);
 		}
 
-		childBlocks.Clear ();
 		Debug.Log (childBlocks.Count);
 
 	}
