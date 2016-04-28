@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class mySelection : MonoBehaviour
 {
 	
-	public Text center;
+	//public GameObject center;
 	GameObject hitObject;
 
 	GameObject selectedObject;
@@ -34,13 +34,14 @@ public class mySelection : MonoBehaviour
 			if (o == selectedObject) {
 				
 			} else if (o == hitObject) {
-				center.fontSize += 1;
+				//center.fontSize += 1;
 				float endTime = Time.time;
 				float time = endTime - startTime;
 				if (time > 2) {
 					Debug.Log ("Raycast: " + hit.collider.gameObject);
 					selectedObject = hitObject;
-					center.color = Color.red;
+					//center.color = Color.red;
+					selectedObject.SendMessage ("youAreSelected");
 				}
 								
 			} else {
@@ -48,8 +49,8 @@ public class mySelection : MonoBehaviour
 				hitObject = o;
 			}
 		} else {
-			center.fontSize = 12;
-			center.color = Color.black;
+			//center.fontSize = 12;
+			//center.color = Color.black;
 			hitObject = null;
 		}
 			
