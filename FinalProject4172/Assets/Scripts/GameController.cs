@@ -103,13 +103,11 @@ public class GameController : MonoBehaviour {
 
 	private void OnEnable()
 	{
-		DropBrickVirtualButtonEventHandler.drop += createBrick;
 		UserInputHandler.OnTap += mySelect;
 	}
 
 	private void OnDisable()
 	{
-		DropBrickVirtualButtonEventHandler.drop -= createBrick;
 		UserInputHandler.OnTap -= mySelect;
 	}
 
