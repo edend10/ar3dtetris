@@ -5,7 +5,7 @@ public class LevelDestruction : MonoBehaviour {
 
 	ArrayList childBlocks = new ArrayList();
 	GameObject currentChild;
-	int numToClear = 20;
+	int numToClear = 10;
 
 
 
@@ -50,7 +50,8 @@ public class LevelDestruction : MonoBehaviour {
 	}
 
 	void OnTriggerExit (Collider block) {
-		childBlocks.RemoveAt(childBlocks.Count-1);
+		//childBlocks.RemoveAt(childBlocks.Count-1);
+		childBlocks.Remove (block.gameObject);
 		Debug.Log (gameObject.name + " removed " + block.gameObject.ToString () + " size: " + childBlocks.Count);
 	}
 
