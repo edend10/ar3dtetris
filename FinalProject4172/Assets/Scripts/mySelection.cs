@@ -34,10 +34,11 @@ public class mySelection : MonoBehaviour
 
 		if (Physics.Raycast (ray, out hit)) {
 			GameObject o = hit.collider.gameObject;
+			Debug.Log (o);
 			if (o == selectedObject) {
 				
 			} else if (o == hitObject) {
-				center.transform.localScale += new Vector3(1,1,1);
+				center.transform.localScale += new Vector3(0.1f,0.1f,0.1f);
 
 				float endTime = Time.time;
 				float time = endTime - startTime;
