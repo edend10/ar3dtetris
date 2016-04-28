@@ -38,7 +38,7 @@ public class mySelection : MonoBehaviour
 			if (o == selectedObject) {
 				
 			} else if (o == hitObject) {
-				center.transform.localScale += new Vector3(0.1f,0.1f,0.1f);
+				center.transform.localScale += new Vector3(0.01f,0.01f,0.01f);
 
 				float endTime = Time.time;
 				float time = endTime - startTime;
@@ -55,7 +55,7 @@ public class mySelection : MonoBehaviour
 				hitObject = o;
 			}
 		} else {
-			center.transform.localScale = new Vector3(1,1,1);
+			center.transform.localScale = new Vector3(0.1f,0.1f,0.1f);
 
 			Renderer r = center.GetComponents<Renderer>()[0];
 			r.material = normalMaterial;
