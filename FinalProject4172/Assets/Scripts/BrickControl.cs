@@ -18,11 +18,6 @@ public class BrickControl : MonoBehaviour {
 	Vector3 oldRot;
 	public GameObject tempGrid;
 
-
-
-
-
-
 	//constants
 	const int AXIS_X = 1;
 	const int AXIS_Y = 2;
@@ -37,9 +32,6 @@ public class BrickControl : MonoBehaviour {
 	const int TRANSLATION_MODE = 1;
 	const float ROTATION_PAUSE = 1f;
 	const int GRID_SIZE = 5;
-
-
-
 
 	// Use this for initialization
 	void Start () {

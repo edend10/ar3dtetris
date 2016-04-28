@@ -8,7 +8,7 @@ public class QuadController : MonoBehaviour {
 
 	void Start () {
 
-		ARcam = GameObject.Find ("Camera").GetComponent<Camera> ();
+		ARcam = GameObject.Find ("StereoCameraLeft").GetComponent<Camera> ();
 
 	}
 	
