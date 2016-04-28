@@ -12,7 +12,7 @@ public class LevelDestruction : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		InvokeRepeating ("CheckIfFull", 2, 2);
+		InvokeRepeating ("CheckIfFull", 2, 1);
 
 	}
 	
@@ -25,22 +25,25 @@ public class LevelDestruction : MonoBehaviour {
 	void CheckIfFull() {
 		Debug.Log ("check " + Time.time);
 		if (childBlocks.Count >= numToClear) {
-			destroyLevel ();
+			DestroyLevel ();
 		}
 	}
 
 	void DestroyLevel( ) {
 
-			Debug.Log ("DestroyLevel " + Time.time + " " + gameObject.name);
-			for (int i = 0; i < numToClear; ++i) {
-				currentChild = (GameObject)childBlocks [i];
-				Debug.Log (currentChild.ToString () + " is trashed"); 
+		int arrSize = childBlocks.Count;
 
-				currentChild.SetActive (false);
-				//childBlocks.Remove (currentChild);
-			}
+		Debug.Log ("DestroyLevel " + Time.time + " " + gameObject.name);
 
-			Debug.Log (childBlocks.Count);
+		while (childBlocks.Count > 0) {
+			currentChild = (GameObject)childBlocks [childBlocks.Count-1];
+			Debug.Log (currentChild.ToString () + " is trashed"); 
+
+			currentChild.SetActive (false);
+			childBlocks.Remove (currentChild);
+		}
+
+		Debug.Log (childBlocks.Count);
 
 	}
 
@@ -57,8 +60,4 @@ public class LevelDestruction : MonoBehaviour {
 	}
 
 
-	void destroyLevel() {
-
-
-	}
 }
