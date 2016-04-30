@@ -3,6 +3,8 @@ using System.Collections;
 
 public class LevelDestruction : MonoBehaviour {
 
+	public static float levelsCleared = .0f;
+
 	ArrayList childBlocks = new ArrayList();
 	GameObject currentChild;
 	int numToClear = 10;
@@ -30,29 +32,31 @@ public class LevelDestruction : MonoBehaviour {
 
 	void DestroyLevel( ) {
 
-		int arrSize = childBlocks.Count;
+		//int arrSize = childBlocks.Count;
 
 		while (childBlocks.Count > 0) {
 			currentChild = (GameObject)childBlocks [childBlocks.Count-1];
-			Debug.Log (currentChild.ToString () + " is trashed"); 
+			//Debug.Log (currentChild.ToString () + " is trashed"); 
 			childBlocks.RemoveAt (childBlocks.Count-1);
 			currentChild.SetActive (false);
 		}
 
-		Debug.Log (childBlocks.Count);
+		++levelsCleared;
+
+		//Debug.Log (childBlocks.Count);
 
 	}
 
 	void OnTriggerEnter(Collider block) {
 		childBlocks.Add(block.gameObject);
-		Debug.Log (gameObject.name + " added " + block.gameObject.ToString () + " size: " + childBlocks.Count);
+		//Debug.Log (gameObject.name + " added " + block.gameObject.ToString () + " size: " + childBlocks.Count);
 
 	}
 
 	void OnTriggerExit (Collider block) {
 		//childBlocks.RemoveAt(childBlocks.Count-1);
 		childBlocks.Remove (block.gameObject);
-		Debug.Log (gameObject.name + " removed " + block.gameObject.ToString () + " size: " + childBlocks.Count);
+		//Debug.Log (gameObject.name + " removed " + block.gameObject.ToString () + " size: " + childBlocks.Count);
 	}
 
 
