@@ -15,13 +15,15 @@ public class LevelController : MonoBehaviour {
 
 		levelText = GameObject.FindGameObjectWithTag ("LevelText").GetComponent<GUIText> ();
 		levelText.text = "Level " + level;
+
+		InvokeRepeating ("CheckLevel", 2, 2);
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void CheckLevel () {
 
 
-		if ((levelsCleared % 5)==0) {
+		if (levelsCleared == 5) {
 			++level;
 			GameController.timer -= 2;
 			Debug.Log (level);
