@@ -4,8 +4,8 @@ using System.Collections;
 public class UserControl : MonoBehaviour {
 
 	public GameObject head;
-
-	public GameObject cameras;
+	public Camera cameraLeft;
+	public Camera cameraRight;
 
 	float fixedDistance = 5.0f;
 
@@ -19,12 +19,13 @@ public class UserControl : MonoBehaviour {
 
 		Vector3 targetPosition = gameObject.transform.position;
 		Vector3 headPosition = head.transform.position;
+		Vector3 cameraPosition = cameras.transform.position;
 
 		float z = Mathf.Abs(targetPosition.z - headPosition.z);
 
 		float displacement = z - fixedDistance;
 
-		Vector3 move = new Vector3 (headPosition.x, headPosition.y, headPosition.z+displacement);
+		Vector3 move = new Vector3 (cameraPosition.x, cameraPosition.y, cameraPosition.z+displacement);
 		head.transform.position = move;
 	
 	}

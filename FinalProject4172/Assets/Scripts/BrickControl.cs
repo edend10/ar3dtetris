@@ -82,10 +82,8 @@ public class BrickControl : MonoBehaviour {
 		}
 		switch (manipulationMode) {
 		case ROTATION_MODE:
-		Debug.Log ("rotation mode");
 			break;
 		case TRANSLATION_MODE:
-		Debug.Log ("translation mode");
 			break;
 		}
 
