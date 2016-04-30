@@ -5,6 +5,8 @@ public class UserControl : MonoBehaviour {
 
 	public GameObject head;
 
+	public GameObject cameras;
+
 	float fixedDistance = 5.0f;
 
 	// Use this for initialization
