@@ -3,8 +3,6 @@ using System.Collections;
 
 public class LevelDestruction : MonoBehaviour {
 
-	public static float levelsCleared = .0f;
-
 	ArrayList childBlocks = new ArrayList();
 	GameObject currentChild;
 	int numToClear = 10;
@@ -41,7 +39,7 @@ public class LevelDestruction : MonoBehaviour {
 			currentChild.SetActive (false);
 		}
 
-		++levelsCleared;
+		++LevelController.levelsCleared;
 
 		//Debug.Log (childBlocks.Count);
 
