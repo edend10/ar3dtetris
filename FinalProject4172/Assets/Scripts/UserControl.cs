@@ -6,7 +6,9 @@ public class UserControl : MonoBehaviour {
 	public GameObject head;
 	public GameObject board;
 
-	float fixedDistance = 5.0f;
+	public GameObject boardTarget;
+
+	float fixedDistance = 10.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -18,14 +20,18 @@ public class UserControl : MonoBehaviour {
 
 		Vector3 targetPosition = gameObject.transform.position;
 		Vector3 headPosition = head.transform.position;
+		Vector3 boardPosition = board.transform.position;
+		Vector3 boardTargetPosition = boardTarget.transform.position;
+		Vector3 fixedVector = boardTargetPosition - headPosition;
+
+		fixedDistance = fixedVector.magnitude;
 
 		float z = Mathf.Abs(targetPosition.z - headPosition.z);
 
 		float displacement = z - fixedDistance;
 	
-
-		//Vector3 move = new Vector3 (0, 0, cameraPosition.z+displacement);
-		//cameras.transform.position = move;
+		Vector3 move = new Vector3 (boardPosition.x, boardPosition.y, boardPosition.z+displacement);
+		board.transform.position = move;
 	
 	}
 }
