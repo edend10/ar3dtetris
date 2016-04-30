@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour {
 	BrickControl brickControl;
 
 	public static float timer = 10f;
-	public static float showTime = timer;
+	public static float showTimer;
 
 	float startTime;
 
@@ -34,6 +34,8 @@ public class GameController : MonoBehaviour {
 		startTime = Time.time;
 		createBrick();
 
+		showTimer = timer;
+
 	}
 
 	// Update is called once per frame
@@ -43,7 +45,7 @@ public class GameController : MonoBehaviour {
 		float time = endTime - startTime;
 		if (time > timer) {
 			if (time % 1 == 0) {
-				showTime -= time;
+				showTimer -= time;
 			}
 
 			if (activeBrick != null) {
