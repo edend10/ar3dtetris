@@ -38,8 +38,9 @@ public class LevelDestruction : MonoBehaviour {
 			childBlocks.RemoveAt (childBlocks.Count-1);
 			currentChild.SetActive (false);
 		}
-
-		++LevelController.levelsCleared;
+		if (LevelController.levelsCleared < 5)
+			++LevelController.levelsCleared;
+		//else 
 
 		//Debug.Log (childBlocks.Count);
 
