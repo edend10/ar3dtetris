@@ -17,21 +17,28 @@ public class UserControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		
 		Vector3 targetPosition = gameObject.transform.position;
 		Vector3 headPosition = head.transform.position;
 		Vector3 boardPosition = board.transform.position;
 		Vector3 boardTargetPosition = boardTarget.transform.position;
 		Vector3 fixedVector = boardTargetPosition - headPosition;
 
-		fixedDistance = fixedVector.magnitude;
+
+		//Translation
+		fixedDistance = Mathf.Abs(boardTargetPosition.y - headPosition.y);
 
 		float z = Mathf.Abs(targetPosition.z - headPosition.z);
 
 		float displacement = z - fixedDistance;
-	
-		Vector3 move = new Vector3 (boardPosition.x, boardPosition.y, boardPosition.z+displacement);
+		Debug.Log (displacement);
+		Vector3 move = new Vector3 (boardPosition.x, boardPosition.y, displacement);
 		board.transform.position = move;
+
+		//Rotation
+
+		Quaternion q = gameObject.transform.rotation;
+		board.transform.rotation = q;
 	
 	}
 }
