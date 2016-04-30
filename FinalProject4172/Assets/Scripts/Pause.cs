@@ -12,4 +12,8 @@ public class Pause : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	public void youAreSelected(){
+		
+	}
 }
