@@ -22,7 +22,7 @@ public class LevelDestruction : MonoBehaviour {
 		}
 	}
 
-	void DestroyLevel( ) {
+	public void DestroyLevel( ) {
 
 		//int arrSize = childBlocks.Count;
 
