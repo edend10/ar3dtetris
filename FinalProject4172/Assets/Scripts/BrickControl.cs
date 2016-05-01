@@ -6,6 +6,7 @@ public class BrickControl : MonoBehaviour {
 	//this script needs to be attached to the same GameObject as the GameController
 
 	GameObject activeBrick;
+	GameObject ghostBrick;
 	GameObject wand;
 	GameObject wandTip;
 	GameObject env;
@@ -42,6 +43,7 @@ public class BrickControl : MonoBehaviour {
 //		}
 
 		activeBrick = GameController.activeBrick;
+		ghostBrick = GameController.ghostBrick;
 		endRotationPause = 0; //rotation cooldown timer reset after each rotation
 		manipulationMode = 0;
 		activeBrickGridX = GRID_SIZE / 2;
@@ -82,8 +84,11 @@ public class BrickControl : MonoBehaviour {
 		}
 		switch (manipulationMode) {
 		case ROTATION_MODE:
+		//Debug.Log ("rotation mode");
 			break;
 		case TRANSLATION_MODE:
+		//Debug.Log ("translation mode");
+
 			break;
 		}
 
@@ -223,6 +228,28 @@ public class BrickControl : MonoBehaviour {
 		}
 
 
+		ghostRelocation ();
+	}
+
+	void ghostRelocation() {
+		if (ghostBrick != null && activeBrick != null) {
+			Vector3 ghostPos = new Vector3 (activeBrick.transform.localPosition.x, 0, activeBrick.transform.localPosition.z);
+			ghostBrick.transform.localPosition = ghostPos;
+			ghostBrick.transform.rotation = activeBrick.transform.rotation;
+
+			Vector3 down = Vector3.down;
+			Debug.DrawRay (activeBrick.transform.position, down * 1000, Color.green);
+			RaycastHit objectHit;
+			Debug.Log ("raycast:");
+			if (Physics.Raycast (activeBrick.transform.position, down, out objectHit, Mathf.Infinity)) {
+				Debug.Log ("hit: " + objectHit.collider.gameObject.name);
+				Destroy (objectHit.collider.gameObject);
+
+			} else {
+				Debug.Log ("no hit");
+			}
+
+		}
 	}
 
 	//TranslateBrick method used for keyboard translation (debugging)
@@ -276,6 +303,7 @@ public class BrickControl : MonoBehaviour {
 			}				
 		}
 
+	
 		Vector3 gridPos = grid [activeBrickGridX, activeBrickGridZ];
 		activeBrick.transform.localPosition = new Vector3(gridPos.x, activeBrick.transform.localPosition.y, gridPos.z);
 
@@ -353,9 +381,13 @@ public class BrickControl : MonoBehaviour {
 	public void initBrickPos() {
 		//move active brick to initial position
 		activeBrick = GameController.activeBrick;
+		ghostBrick = GameController.ghostBrick;
 		activeBrickGridX = GRID_SIZE / 2;
 		activeBrickGridZ = GRID_SIZE / 2;
 		Vector3 gridPos = grid [activeBrickGridX, activeBrickGridZ];
 		activeBrick.transform.localPosition = new Vector3(gridPos.x, activeBrick.transform.localPosition.y, gridPos.z);
+
+		ghostBrick.transform.position = activeBrick.transform.position;
+		//ghostBrick.transform.Translate (new Vector3 (0, -2, 0));
 	}
 }

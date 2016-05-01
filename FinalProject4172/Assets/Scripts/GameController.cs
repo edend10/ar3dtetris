@@ -9,14 +9,18 @@ public class GameController : MonoBehaviour {
 	public GameObject S;
 	public GameObject T;
 	public GameObject Square;
+	public Material ghostMaterial;
+
 	BrickControl brickControl;
 
 	public static float timer = 10f;
 	public static float showTimer;
 
+
 	float startTime;
 
 	public static GameObject activeBrick;
+	public static GameObject ghostBrick;
 	public static GameObject wand;
 	public static GameObject wandTip;
 	public static GameObject environment;
@@ -32,7 +36,7 @@ public class GameController : MonoBehaviour {
 		brickControl = gameObject.GetComponent<BrickControl> ();
 
 		startTime = Time.time;
-		createBrick();
+		//createBrick();
 
 		showTimer = timer;
 
@@ -52,15 +56,25 @@ public class GameController : MonoBehaviour {
 				activeBrick.tag = "Untagged";
 			}
 
-			createBrick ();
-			Rigidbody r = activeBrick.GetComponents<Rigidbody> ()[0];
-			r.useGravity = true;
+//			createBrick ();
+//			Rigidbody r = activeBrick.GetComponents<Rigidbody> ()[0];
+//			r.useGravity = true;
 			startTime = Time.time;
+		}
+
+		if (Input.GetKeyDown ("k")) { 
+			createBrick ();
+			Rigidbody r = activeBrick.GetComponents<Rigidbody> () [0];
+			//r.useGravity = true;
 		}
 
 	}
 
 	public void createBrick(){
+
+		GameObject chosenPrefab = I;
+
+		Destroy (ghostBrick);
 
 		if (activeBrick != null) {
 			activeBrick.tag = "Untagged";
@@ -72,18 +86,23 @@ public class GameController : MonoBehaviour {
 		GameObject n = null;
 		if (number == 1) {
 			n = Instantiate (I);
+			chosenPrefab = I;
 
 		} else if (number == 2) {
 			n = Instantiate (L);
+			chosenPrefab = L;
 
 		} else if (number == 3) {
 			n = Instantiate (S);
+			chosenPrefab = S;
 
 		} else if (number == 4) {
 			n = Instantiate (T);
+			chosenPrefab = T;
 
 		} else if (number == 5) {
 			n = Instantiate (Square);
+			chosenPrefab = Square;
 
 		}
 		n.transform.parent = environment.transform;
@@ -93,7 +112,19 @@ public class GameController : MonoBehaviour {
 
 		n.tag = "active";
 		activeBrick = n;
+		ghostBrick = Instantiate(chosenPrefab);
+		ghostBrick.transform.parent = environment.transform;
+		ghostBrick.AddComponent <L_Shape>();
+
+		foreach(Renderer rend in ghostBrick.GetComponentsInChildren<Renderer>()) {
+			rend.material = ghostMaterial;
+		}
+		foreach(Collider col in ghostBrick.GetComponentsInChildren<Collider>()) {
+			Destroy (col);
+		}
 		brickControl.initBrickPos ();
+
+
 	}
 
 
@@ -105,7 +136,7 @@ public class GameController : MonoBehaviour {
 			r.useGravity = true;
 		}
 
-		createBrick ();
+		//createBrick ();
 		
 	}
 
