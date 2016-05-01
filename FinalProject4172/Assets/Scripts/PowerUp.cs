@@ -3,17 +3,29 @@ using System.Collections;
 
 public class PowerUp : MonoBehaviour {
 
-	// Use this for initialization
+	InvokeRepeating("Blink", 0, 0.4);
+
+	public bool isFalling;
+
 	void Start () {
 	
 	}
 	
-	// Update is called once per frame
+
 	void Update () {
-	
+			
 	}
 
 	public void youAreSelected(){
 		Debug.Log ("selected: " + gameObject);
+
 	}
+
+
+	public void Blink() {
+		renderer.enabled = false;
+		yield WaitForSeconds(0.2);
+		renderer.enabled = true;
+	}
+
 }
