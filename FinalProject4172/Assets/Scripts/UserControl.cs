@@ -31,7 +31,7 @@ public class UserControl : MonoBehaviour {
 		float z = Mathf.Abs(targetPosition.z - headPosition.z);
 
 		float displacement = z - fixedDistance;
-		Debug.Log (displacement);
+		//Debug.Log (displacement);
 		Vector3 move = new Vector3 (boardPosition.x, boardPosition.y, displacement);
 		board.transform.position = move;
 
