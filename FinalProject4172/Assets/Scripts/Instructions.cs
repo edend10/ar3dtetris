@@ -12,4 +12,8 @@ public class Instructions : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	public void youAreSelected(){
+
+	}
 }
