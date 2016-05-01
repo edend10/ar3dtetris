@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
-public class LoadGame : MonoBehaviour {
-
-	public int level = 1;
+public class Instructions : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +14,6 @@ public class LoadGame : MonoBehaviour {
 	}
 
 	public void youAreSelected(){
-		LevelController.level = level;
-		SceneManager.LoadScene ("MainScene");
+
 	}
 }
