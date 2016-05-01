@@ -34,25 +34,28 @@ public class mySelection : MonoBehaviour
 
 		if (Physics.Raycast (ray, out hit)) {
 			GameObject o = hit.collider.gameObject;
-			Debug.Log (o);
-			if (o == selectedObject) {
-				
-			} else if (o == hitObject) {
-				center.transform.localScale += new Vector3(0.01f,0.01f,0.01f);
-
-				float endTime = Time.time;
-				float time = endTime - startTime;
-				if (time > 2) {
-					Debug.Log ("Raycast: " + hit.collider.gameObject);
-					selectedObject = hitObject;
-					Renderer r = center.GetComponents<Renderer>()[0];
-					r.material = selectedMaterial;
-					selectedObject.SendMessage ("youAreSelected");
-				}
-								
+			int layer = o.layer;
+			if (layer == 8) {
 			} else {
-				startTime = Time.time;
-				hitObject = o;
+				if (o == selectedObject) {
+				
+				} else if (o == hitObject) {
+					center.transform.localScale += new Vector3 (0.01f, 0.01f, 0.01f);
+
+					float endTime = Time.time;
+					float time = endTime - startTime;
+					if (time > 2) {
+						Debug.Log ("Raycast: " + hit.collider.gameObject);
+						selectedObject = hitObject;
+						Renderer r = center.GetComponents<Renderer> () [0];
+						r.material = selectedMaterial;
+						selectedObject.SendMessage ("youAreSelected");
+					}
+								
+				} else {
+					startTime = Time.time;
+					hitObject = o;
+				}
 			}
 		} else {
 			center.transform.localScale = new Vector3(0.1f,0.1f,0.1f);
