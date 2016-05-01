@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour {
 		wand = GameObject.Find ("Wand");
 		wandTip = GameObject.Find ("WandTip");
 		environment = GameObject.Find ("Environment");
-		ground = GameObject.Find ("Ground");
+		ground = GameObject.FindGameObjectsWithTag("Ground")[0];
 		brickControl = gameObject.GetComponent<BrickControl> ();
 
 		startTime = Time.time;
@@ -86,10 +86,8 @@ public class GameController : MonoBehaviour {
 			n = Instantiate (Square);
 
 		}
-		n.transform.parent = environment.transform;
+		n.transform.parent = ground.transform;
 		n.AddComponent <L_Shape>();
-
-
 
 		n.tag = "active";
 		activeBrick = n;

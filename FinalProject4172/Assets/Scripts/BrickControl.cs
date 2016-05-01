@@ -50,7 +50,7 @@ public class BrickControl : MonoBehaviour {
 		wandTip = GameController.wandTip;
 		oldRot = wand.transform.eulerAngles;
 		env = GameController.environment;
-		ground = GameController.ground;
+		ground = GameObject.Find ("Ground");;
 		Renderer envRenderer = env.transform.GetComponent<Renderer> ();
 
 		float area = envRenderer.bounds.size.x * envRenderer.bounds.size.z;
