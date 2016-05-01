@@ -14,20 +14,23 @@ public class LevelController : MonoBehaviour {
 		levelsCleared = 0;
 
 		levelText = GameObject.FindGameObjectWithTag ("LevelText").GetComponent<GUIText> ();
-		levelText.text = "Level " + level;
+		levelText.text = "Level " + level; 
+		//levelText = "Level " + level;
 
-		InvokeRepeating ("CheckLevel", 2, 2);
+		InvokeRepeating ("CheckLevel", 2, .5f);
 	}
 	
 	// Update is called once per frame
 	void CheckLevel () {
 
+		//Debug.Log ("showTimer " + GameController.showTimer); 
 
-		if (levelsCleared == 5) {
+		if (levelsCleared == 1) {
 			++level;
 			GameController.timer -= 2;
-			//Debug.Log (level);
-			levelText.text = "Level: " + level;
+			Debug.Log ("level " + level + " timer " + GameController.timer);
+//			levelText.text = "Level: " + level;
+			levelsCleared = 0;
 		}
 	
 	}

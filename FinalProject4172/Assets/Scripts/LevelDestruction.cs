@@ -15,12 +15,6 @@ public class LevelDestruction : MonoBehaviour {
 		InvokeRepeating ("CheckIfFull", 2, 1);
 
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-
-	}
 
 	void CheckIfFull() {
 		if (childBlocks.Count >= numToClear) {
@@ -40,7 +34,6 @@ public class LevelDestruction : MonoBehaviour {
 		}
 		if (LevelController.levelsCleared < 5)
 			++LevelController.levelsCleared;
-		//else 
 
 		//Debug.Log (childBlocks.Count);
 
