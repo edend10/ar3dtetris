@@ -25,7 +25,8 @@ public class LevelController : MonoBehaviour {
 
 		if (levelsCleared == 5) {
 			++level;
-			GameController.timer -= 2;
+			GameController.createTimer -= 2;
+			GameController.releaseTimer -= 2;
 			//Debug.Log (level);
 			levelText.text = "Level: " + level;
 		}

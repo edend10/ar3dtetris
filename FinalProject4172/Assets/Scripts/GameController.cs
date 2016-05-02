@@ -13,7 +13,9 @@ public class GameController : MonoBehaviour {
 
 	BrickControl brickControl;
 
-	public static float timer = 10f;
+
+	public static float releaseTimer = 7f;
+	public static float createTimer = releaseTimer + 2f;
 	public static float showTimer;
 
 
@@ -36,9 +38,9 @@ public class GameController : MonoBehaviour {
 		brickControl = gameObject.GetComponent<BrickControl> ();
 
 		startTime = Time.time;
-		//createBrick();
+		createBrick();
 
-		showTimer = timer;
+		showTimer = releaseTimer;
 
 	}
 
@@ -47,7 +49,7 @@ public class GameController : MonoBehaviour {
 		
 		float endTime = Time.time;
 		float time = endTime - startTime;
-		if (time > timer) {
+		if (time > releaseTimer && time < createTimer) {
 			if (time % 1 == 0) {
 				showTimer -= time;
 			}
@@ -55,17 +57,19 @@ public class GameController : MonoBehaviour {
 			if (activeBrick != null) {
 				activeBrick.tag = "Untagged";
 			}
+				
+			releaseBrick ();
 
-//			createBrick ();
-//			Rigidbody r = activeBrick.GetComponents<Rigidbody> ()[0];
-//			r.useGravity = true;
+		} else if (time > createTimer) {
+			createBrick ();
 			startTime = Time.time;
 		}
 
 		if (Input.GetKeyDown ("k")) { 
 			createBrick ();
-			Rigidbody r = activeBrick.GetComponents<Rigidbody> () [0];
-			//r.useGravity = true;
+		}
+		if (Input.GetKeyDown ("l")) { 
+			releaseBrick ();
 		}
 
 	}
@@ -73,8 +77,6 @@ public class GameController : MonoBehaviour {
 	public void createBrick(){
 
 		GameObject chosenPrefab = I;
-
-		Destroy (ghostBrick);
 
 		if (activeBrick != null) {
 			activeBrick.tag = "Untagged";
@@ -127,6 +129,15 @@ public class GameController : MonoBehaviour {
 
 	}
 
+	void releaseBrick() {
+		Rigidbody r = activeBrick.GetComponents<Rigidbody> () [0];
+		r.useGravity = true;
+		activeBrick.layer = 8; //ignoreselection layer instead of ignoreraycast
+		foreach (Transform child in activeBrick.GetComponentsInChildren<Transform>()) {			
+			child.gameObject.layer = 8;
+		}
+		Destroy (ghostBrick);
+	}
 
 	void mySelect(Touch touch){
 		GameObject[] temp = GameObject.FindGameObjectsWithTag("active");

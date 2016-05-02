@@ -55,7 +55,7 @@ public class BrickControl : MonoBehaviour {
 		ground = GameController.ground;
 		Renderer envRenderer = env.transform.GetComponent<Renderer> ();
 
-		float area = envRenderer.bounds.size.x * envRenderer.bounds.size.z;
+		//float area = envRenderer.bounds.size.x * envRenderer.bounds.size.z;
 
 
 		//creates a GRID_SIZE by GRID_SIZE (5x5 right now) grid on the image target so that bricks will snap to it
@@ -228,26 +228,35 @@ public class BrickControl : MonoBehaviour {
 		}
 
 
-		ghostRelocation ();
+		ghostProjection ();
 	}
 
-	void ghostRelocation() {
+	void ghostProjection() {
 		if (ghostBrick != null && activeBrick != null) {
-			Vector3 ghostPos = new Vector3 (activeBrick.transform.localPosition.x, 0, activeBrick.transform.localPosition.z);
-			ghostBrick.transform.localPosition = ghostPos;
+			
 			ghostBrick.transform.rotation = activeBrick.transform.rotation;
 
+			float minDistance = float.MaxValue;
+			float currHeight = activeBrick.transform.position.y;
 			Vector3 down = Vector3.down;
-			Debug.DrawRay (activeBrick.transform.position, down * 1000, Color.green);
-			RaycastHit objectHit;
-			Debug.Log ("raycast:");
-			if (Physics.Raycast (activeBrick.transform.position, down, out objectHit, Mathf.Infinity)) {
-				Debug.Log ("hit: " + objectHit.collider.gameObject.name);
-				Destroy (objectHit.collider.gameObject);
-
-			} else {
-				Debug.Log ("no hit");
+			foreach (Transform t in activeBrick.GetComponentsInChildren<Transform>()) {
+				if (t.gameObject != activeBrick) {
+					Vector3 rayPoint = new Vector3 (t.position.x, activeBrick.transform.position.y, t.position.z);
+					RaycastHit objectHit;
+					if (Physics.Raycast (t.position, down, out objectHit, Mathf.Infinity)) {						
+						float dist = objectHit.distance;
+						if (dist < minDistance) {
+							minDistance = dist;						
+						}										
+					}
+				}
 			}
+
+
+			float brickCenterYOffset = activeBrick.GetComponentInChildren<Collider> ().bounds.extents.y;
+
+			ghostBrick.transform.position = activeBrick.transform.position;
+			ghostBrick.transform.Translate (down * (minDistance - brickCenterYOffset), Space.World);
 
 		}
 	}
