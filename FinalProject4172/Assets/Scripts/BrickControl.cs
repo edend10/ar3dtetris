@@ -53,7 +53,7 @@ public class BrickControl : MonoBehaviour {
 		oldRot = wand.transform.eulerAngles;
 		env = GameController.environment;
 		ground = GameObject.Find ("Ground");;
-		Renderer envRenderer = env.transform.GetComponent<Renderer> ();
+		//Renderer envRenderer = env.transform.GetComponent<Renderer> ();
 
 		//float area = envRenderer.bounds.size.x * envRenderer.bounds.size.z;
 
@@ -152,7 +152,7 @@ public class BrickControl : MonoBehaviour {
 			Vector3 gridPos = grid [minI, minJ];
 
 			//check in bounds
-			Vector3 translateDelta = env.transform.TransformPoint(gridPos - activeBrick.transform.localPosition);
+			Vector3 translateDelta = ground.transform.TransformPoint(gridPos - activeBrick.transform.localPosition);
 			Bounds gb = ground.GetComponent<Renderer> ().bounds;
 			Vector3 ngbMin = new Vector3 (gb.min.x, float.MinValue ,gb.min.z);
 			Vector3 ngbMax = new Vector3 (gb.max.x, float.MaxValue ,gb.max.z);
