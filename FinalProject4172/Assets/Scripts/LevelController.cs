@@ -4,9 +4,10 @@ using System.Collections;
 public class LevelController : MonoBehaviour {
 
 	TextMesh levelText;
-
 	public static int levelsCleared;
 	public static int level;
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -14,9 +15,8 @@ public class LevelController : MonoBehaviour {
 		level = 0;
 		levelsCleared = 0;
 
-		levelText.text = "Level " + level; 
-		//levelText = "Level " + level;
-
+		levelText = GameObject.Find("LevelNumber").GetComponent<TextMesh> ();
+		levelText.text = level.ToString ();
 		InvokeRepeating ("CheckLevel", 2, .5f);
 	}
 	
@@ -25,11 +25,12 @@ public class LevelController : MonoBehaviour {
 
 		//Debug.Log ("showTimer " + GameController.showTimer); 
 
-		if (levelsCleared == 1) {
+		if (levelsCleared == 5) {
 			++level;
-			GameController.timer -= 2;
+			if (GameController.timer > 0) 
+				GameController.timer -= 2;
 			Debug.Log ("level " + level + " timer " + GameController.timer);
-			levelText.text = "Level: " + level;
+			levelText.text = level.ToString ();
 			levelsCleared = 0;
 		}
 	

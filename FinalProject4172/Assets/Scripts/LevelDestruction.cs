@@ -5,7 +5,7 @@ public class LevelDestruction : MonoBehaviour {
 
 	ArrayList childBlocks = new ArrayList();
 	GameObject currentChild;
-	int numToClear = 10;
+	int numToClear = 5;
 
 
 
@@ -24,31 +24,23 @@ public class LevelDestruction : MonoBehaviour {
 
 	public void DestroyLevel( ) {
 
-		//int arrSize = childBlocks.Count;
-
 		while (childBlocks.Count > 0) {
 			currentChild = (GameObject)childBlocks [childBlocks.Count-1];
-			//Debug.Log (currentChild.ToString () + " is trashed"); 
 			childBlocks.RemoveAt (childBlocks.Count-1);
 			currentChild.SetActive (false);
 		}
 		if (LevelController.levelsCleared < 5)
 			++LevelController.levelsCleared;
 
-		//Debug.Log (childBlocks.Count);
-
 	}
 
 	void OnTriggerEnter(Collider block) {
 		childBlocks.Add(block.gameObject);
-		//Debug.Log (gameObject.name + " added " + block.gameObject.ToString () + " size: " + childBlocks.Count);
 
 	}
 
 	void OnTriggerExit (Collider block) {
-		//childBlocks.RemoveAt(childBlocks.Count-1);
 		childBlocks.Remove (block.gameObject);
-		//Debug.Log (gameObject.name + " removed " + block.gameObject.ToString () + " size: " + childBlocks.Count);
 	}
 
 
