@@ -52,7 +52,7 @@ public class BrickControl : MonoBehaviour {
 		wandTip = GameController.wandTip;
 		oldRot = wand.transform.eulerAngles;
 		env = GameController.environment;
-		ground = GameController.ground;
+		ground = GameObject.Find ("Ground");;
 		Renderer envRenderer = env.transform.GetComponent<Renderer> ();
 
 		//float area = envRenderer.bounds.size.x * envRenderer.bounds.size.z;
@@ -133,7 +133,7 @@ public class BrickControl : MonoBehaviour {
 	//Track sphere at tip of wand and snap active brick to grid square on the board that's closest to the tip
 	//before actually executing the translation, iterate through individual cubes to make sure the translate won't put any of them outside the board
 	else if (manipulationMode == TRANSLATION_MODE) {
-			Vector3 currTrans = env.transform.InverseTransformPoint (wandTip.transform.position);
+			Vector3 currTrans = ground.transform.InverseTransformPoint (wandTip.transform.position);
 			float dist = 0;
 			float minDist = float.MaxValue;
 			int minI = 0;
@@ -219,7 +219,7 @@ public class BrickControl : MonoBehaviour {
 				for (int j = 0; j < GRID_SIZE; j++) {
 
 					GameObject a = Instantiate (tempGrid);
-					a.transform.parent = env.transform;
+					a.transform.parent = ground.transform;
 					a.transform.localPosition = grid [i, j];
 					//Debug.Log ("a: " + grid [i, j]);
 
@@ -287,7 +287,7 @@ public class BrickControl : MonoBehaviour {
 		}
 
 		//translate delta to world space
-		translateDelta = env.transform.TransformPoint (translateDelta);
+		translateDelta = ground.transform.TransformPoint (translateDelta);
 
 
 		//create new bounding box to check brick in bounds
@@ -398,5 +398,9 @@ public class BrickControl : MonoBehaviour {
 
 		ghostBrick.transform.position = activeBrick.transform.position;
 		//ghostBrick.transform.Translate (new Vector3 (0, -2, 0));
+	}
+
+	public void releaseActiveBrick() {
+		activeBrick = null;
 	}
 }

@@ -34,7 +34,7 @@ public class GameController : MonoBehaviour {
 		wand = GameObject.Find ("Wand");
 		wandTip = GameObject.Find ("WandTip");
 		environment = GameObject.Find ("Environment");
-		ground = GameObject.Find ("Ground");
+		ground = GameObject.FindGameObjectsWithTag("Ground")[0];
 		brickControl = gameObject.GetComponent<BrickControl> ();
 
 		startTime = Time.time;
@@ -107,15 +107,13 @@ public class GameController : MonoBehaviour {
 			chosenPrefab = Square;
 
 		}
-		n.transform.parent = environment.transform;
+		n.transform.parent = ground.transform;
 		n.AddComponent <L_Shape>();
-
-
 
 		n.tag = "active";
 		activeBrick = n;
 		ghostBrick = Instantiate(chosenPrefab);
-		ghostBrick.transform.parent = environment.transform;
+		ghostBrick.transform.parent = ground.transform;
 		ghostBrick.AddComponent <L_Shape>();
 
 		foreach(Renderer rend in ghostBrick.GetComponentsInChildren<Renderer>()) {
@@ -136,7 +134,10 @@ public class GameController : MonoBehaviour {
 		foreach (Transform child in activeBrick.GetComponentsInChildren<Transform>()) {			
 			child.gameObject.layer = 8;
 		}
+
 		Destroy (ghostBrick);
+		activeBrick = null;
+		brickControl.releaseActiveBrick ();
 	}
 
 	void mySelect(Touch touch){
