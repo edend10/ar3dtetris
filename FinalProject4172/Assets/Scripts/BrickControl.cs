@@ -91,7 +91,7 @@ public class BrickControl : MonoBehaviour
 			}
 			//activeBrick.transform.parent = ground.transform;
 			//Debug.Log (activeBrick.transform.parent.name);
-			activeBrick.transform.localPosition = new Vector3 (gridPos1.x, activeBrick.transform.localPosition.y, gridPos1.z);
+			//activeBrick.transform.localPosition = new Vector3 (gridPos1.x, activeBrick.transform.localPosition.y, gridPos1.z);
 
 			Vector3 currRot = wand.transform.eulerAngles;
 
@@ -170,6 +170,7 @@ public class BrickControl : MonoBehaviour
 				}
 
 				Vector3 gridPos = grid [minI, minJ];
+
 
 				//check in bounds
 				Vector3 translateDelta = ground.transform.TransformPoint (gridPos - activeBrick.transform.localPosition);
@@ -339,6 +340,7 @@ public class BrickControl : MonoBehaviour
 		}
 
 	
+
 		Vector3 gridPos = grid [activeBrickGridX, activeBrickGridZ];
 		activeBrick.transform.localPosition = new Vector3 (gridPos.x, activeBrick.transform.localPosition.y, gridPos.z);
 
