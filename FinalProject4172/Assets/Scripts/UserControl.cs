@@ -51,19 +51,19 @@ public class UserControl : MonoBehaviour {
 
 		//Rotation
 		if (marker == 1) {
-			Vector3 markerRot = gameObject.transform.eulerAngles;
-			Vector3 boardRot = board.transform.eulerAngles;
-			board.transform.eulerAngles = new Vector3 (boardRot.x, markerRot.y, boardRot.z);
+//			Vector3 markerRot = gameObject.transform.eulerAngles;
+//			Vector3 boardRot = board.transform.eulerAngles;
+//			board.transform.eulerAngles = new Vector3 (boardRot.x, markerRot.y, boardRot.z);
 		}
 		if (marker == 2) {
-			Vector3 newAngle = transform.eulerAngles;
-			Vector3 angleDiff = newAngle - oldAngle;
-			if(Mathf.Abs(angleDiff.y) > THRESHOLD) {
-				int dir = (int)Mathf.Sign (angleDiff.y);
-
-				board.transform.Translate(new Vector3 (0,0,dir * multiplier));
-				oldAngle = newAngle;
-			}
+//			Vector3 newAngle = transform.eulerAngles;
+//			Vector3 angleDiff = newAngle - oldAngle;
+//			if(Mathf.Abs(angleDiff.y) > THRESHOLD) {
+//				int dir = (int)Mathf.Sign (angleDiff.y);
+//
+//				board.transform.Translate(new Vector3 (0,0,dir * multiplier));
+//				oldAngle = newAngle;
+//			}
 
 		}
 	}
