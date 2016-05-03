@@ -28,6 +28,8 @@ public class GameController : MonoBehaviour {
 	public static GameObject environment;
 	public static GameObject ground;
 
+	bool paused = false;
+
 	// Use this for initialization
 	void Start () {
 		//set global refs
@@ -46,30 +48,32 @@ public class GameController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
-		float endTime = Time.time;
-		float time = endTime - startTime;
-		if (time > releaseTimer && time < createTimer) {
-			if (time % 1 == 0) {
-				showTimer -= time;
-			}
 
-			if (activeBrick != null) {
-				activeBrick.tag = "Untagged";
-			}
+		if (!paused) {
+			float endTime = Time.time;
+			float time = endTime - startTime;
+			if (time > releaseTimer && time < createTimer) {
+				if (time % 1 == 0) {
+					showTimer -= time;
+				}
+
+				if (activeBrick != null) {
+					activeBrick.tag = "Untagged";
+				}
 				
-			releaseBrick ();
+				releaseBrick ();
 
-		} else if (time > createTimer) {
-			createBrick ();
-			startTime = Time.time;
-		}
+			} else if (time > createTimer) {
+				createBrick ();
+				startTime = Time.time;
+			}
 
-		if (Input.GetKeyDown ("k")) { 
-			createBrick ();
-		}
-		if (Input.GetKeyDown ("l")) { 
-			releaseBrick ();
+			if (Input.GetKeyDown ("k")) { 
+				createBrick ();
+			}
+			if (Input.GetKeyDown ("l")) { 
+				releaseBrick ();
+			}
 		}
 
 	}
@@ -148,10 +152,7 @@ public class GameController : MonoBehaviour {
 			activeBrick = temp [0];
 			Rigidbody r = activeBrick.GetComponents<Rigidbody> ()[0];
 			r.useGravity = true;
-		}
-
-		//createBrick ();
-		
+		}	
 	}
 
 	private void OnEnable()
@@ -162,6 +163,10 @@ public class GameController : MonoBehaviour {
 	private void OnDisable()
 	{
 		UserInputHandler.OnTap -= mySelect;
+	}
+
+	void pause(bool p){
+		paused = p;
 	}
 
 }
