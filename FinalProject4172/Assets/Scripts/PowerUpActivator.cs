@@ -11,7 +11,7 @@ public class PowerUpActivator : MonoBehaviour {
 
 	void Update () {
 
-		if (Time.time > 10 && Time.time < 12) {
+		if (Time.time > 5 && Time.time < 6) {
 			destroyPowerUp.gameObject.SetActive (true);
 		}
 	}
