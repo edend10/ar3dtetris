@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour {
 	BrickControl brickControl;
 
 
-	public static float releaseTimer = 7f;
+	public static float releaseTimer = 10f;
 	public static float createTimer = releaseTimer + 2f;
 	public static float showTimer;
 

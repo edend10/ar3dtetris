@@ -14,30 +14,24 @@ public class StatusBarController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-//		if (GameController.releaseTimer % 1 == 0) {
-//
-//			for (int i = 0; i <= GameController.releaseTimer; ++i) {
-//				showBox (i);
-//			}
-//		}
-//		if (GameController.releaseTimer % 1 == 0) {
-//			//removeBox ();
-//		}
+		for (int i = 0; i <= GameController.releaseTimer; ++i) {
+			float obj = GameController.releaseTimer - 10;
+			string temp = "StatusCube" + obj;
+			Debug.Log (temp + " not active");
 
+			//GameObject.Find (temp).SetActive (false);
+		}
 	}
 
 
 	void showBox() {
 		for (int i = 0; i <= GameController.releaseTimer; ++i) {
-			GameObject.Find ("StatusCube" + i).SetActive (true);
-			Debug.Log (i + " statuscube");
+			string temp = "StatusCube" + i;
+
+			GameObject.Find (temp).SetActive (true);
+			Debug.Log (temp + " active" );
 		}
 	}
 
-	void removeBox(int i) {
 
-		GameObject.Find ("StatusCube" + i).SetActive (false);
-
-	
-	}
 }

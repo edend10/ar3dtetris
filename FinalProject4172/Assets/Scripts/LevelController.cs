@@ -29,7 +29,7 @@ public class LevelController : MonoBehaviour {
 			++level;
 			//Debug.Log (level);
 			levelText.text = "Level: " + level;
-			if (GameController.releaseTimer > 0) {
+			if (GameController.releaseTimer > 1) {
 				GameController.createTimer -= 2;
 				GameController.releaseTimer -= 2;
 			}
