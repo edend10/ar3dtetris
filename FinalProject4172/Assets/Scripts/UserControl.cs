@@ -8,6 +8,7 @@ public class UserControl : MonoBehaviour {
 
 	public GameObject boardTarget;
 
+
 	float fixedDistance = 2.5f;
 
 	// Use this for initialization
@@ -24,11 +25,12 @@ public class UserControl : MonoBehaviour {
 		Vector3 boardTargetPosition = boardTarget.transform.position;
 
 
+			/*
 		//translation
 		float displacement = targetPosition.z - boardTargetPosition.z + fixedDistance;
 		Vector3 move = new Vector3 (boardPosition.x, boardPosition.y, 2 * displacement);
 		board.transform.position = move;
-
+		*/
 
 		/*
 

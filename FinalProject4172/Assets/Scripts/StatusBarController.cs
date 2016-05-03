@@ -17,7 +17,7 @@ public class StatusBarController : MonoBehaviour {
 		for (int i = 0; i <= GameController.releaseTimer; ++i) {
 			float obj = GameController.releaseTimer - 10;
 			string temp = "StatusCube" + obj;
-			Debug.Log (temp + " not active");
+
 
 			//GameObject.Find (temp).SetActive (false);
 		}
@@ -29,7 +29,7 @@ public class StatusBarController : MonoBehaviour {
 			string temp = "StatusCube" + i;
 
 			GameObject.Find (temp).SetActive (true);
-			Debug.Log (temp + " active" );
+
 		}
 	}
 
