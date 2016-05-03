@@ -12,10 +12,13 @@ public class UserControl : MonoBehaviour {
 
 
 	float fixedDistance = 2.5f;
+	Vector3 oldAngle;
+	float multiplier = 0.2f;
+	float THRESHOLD = 5f;
 
 	// Use this for initialization
 	void Start () {
-	
+		oldAngle = transform.eulerAngles;
 	}
 	
 	// Update is called once per frame
@@ -52,7 +55,15 @@ public class UserControl : MonoBehaviour {
 			board.transform.rotation = q;
 		}
 		if (marker == 2) {
-			
+			Vector3 newAngle = transform.eulerAngles;
+			Vector3 angleDiff = newAngle - oldAngle;
+			if(Mathf.Abs(angleDiff.y) > THRESHOLD) {
+				int dir = (int)Mathf.Sign (angleDiff.y);
+
+				board.transform.Translate(new Vector3 (0,0,dir * multiplier));
+				oldAngle = newAngle;
+			}
+
 		}
 	}
 }
