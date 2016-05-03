@@ -321,7 +321,7 @@ public class BrickControl : MonoBehaviour
 		Vector3 ngbMax = new Vector3 (gb.max.x, float.MaxValue, gb.max.z);
 		Bounds groundBounds = new Bounds ();
 		groundBounds.SetMinMax (ngbMin, ngbMax);
-		Debug.Log (translateDelta);
+		//Debug.Log (translateDelta);
 		foreach (Transform c in activeBrick.GetComponentInChildren<Transform>()) {						
 			//at least one brick would be out of bounds with this translate, revert and abort
 			if (!groundBounds.Contains (c.position + translateDelta)) {												
