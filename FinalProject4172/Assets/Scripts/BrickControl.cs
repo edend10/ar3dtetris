@@ -12,6 +12,7 @@ public class BrickControl : MonoBehaviour
 	GameObject wandTip;
 	GameObject env;
 	GameObject ground;
+	GameObject groundFloor;
 	Vector3[,] grid;
 	int manipulationMode;
 	int activeBrickGridX;
@@ -57,8 +58,9 @@ public class BrickControl : MonoBehaviour
 		wandTip = GameController.wandTip;
 		oldRot = wand.transform.eulerAngles;
 		env = GameController.environment;
-		ground = GameObject.Find ("Ground");
-		;
+		ground = GameController.ground;
+		groundFloor = GameObject.FindGameObjectsWithTag ("GroundFloor")[0];
+
 		//Renderer envRenderer = env.transform.GetComponent<Renderer> ();
 
 		//float area = envRenderer.bounds.size.x * envRenderer.bounds.size.z;
@@ -68,9 +70,9 @@ public class BrickControl : MonoBehaviour
 		grid = new Vector3[GRID_SIZE, GRID_SIZE];
 		float gridSquareCenterOffset = 1f / (float)GRID_SIZE / 2f;
 		for (int i = 0; i < GRID_SIZE; i++) {
-			for (int j = 0; j < GRID_SIZE; j++) {
-				//Debug.Log (gridSquareCenterOffset);
+			for (int j = 0; j < GRID_SIZE; j++) {				
 				grid [i, j] = new Vector3 (-0.5f + i * (1f / GRID_SIZE) + gridSquareCenterOffset, 0f, -0.5f + j * (1f / GRID_SIZE) + gridSquareCenterOffset);
+
 			}
 		}
 
@@ -82,6 +84,15 @@ public class BrickControl : MonoBehaviour
 	void Update ()
 	{		
 		if (activeBrick != null && !paused) {
+			Vector3 gridPos1 = activeBrick.transform.localPosition;
+			if (grid != null) {
+				//Debug.Log ("yes");
+				gridPos1 = grid [activeBrickGridX, activeBrickGridZ];
+			}
+			//activeBrick.transform.parent = ground.transform;
+			//Debug.Log (activeBrick.transform.parent.name);
+			activeBrick.transform.localPosition = new Vector3 (gridPos1.x, activeBrick.transform.localPosition.y, gridPos1.z);
+
 			Vector3 currRot = wand.transform.eulerAngles;
 
 			//set manipulation mode
@@ -162,7 +173,7 @@ public class BrickControl : MonoBehaviour
 
 				//check in bounds
 				Vector3 translateDelta = ground.transform.TransformPoint (gridPos - activeBrick.transform.localPosition);
-				Bounds gb = ground.GetComponent<Renderer> ().bounds;
+				Bounds gb = groundFloor.GetComponent<Renderer> ().bounds;
 				Vector3 ngbMin = new Vector3 (gb.min.x, float.MinValue, gb.min.z);
 				Vector3 ngbMax = new Vector3 (gb.max.x, float.MaxValue, gb.max.z);
 				Bounds groundBounds = new Bounds ();
@@ -179,6 +190,7 @@ public class BrickControl : MonoBehaviour
 
 
 				activeBrick.transform.localPosition = new Vector3 (gridPos.x, activeBrick.transform.localPosition.y, gridPos.z);
+
 			}
 		
 
@@ -222,7 +234,7 @@ public class BrickControl : MonoBehaviour
 
 			//debug grid positions (creates small 3D cubes on grid to show positions):
 			//need to add a cube prefab to script's "tempGrid" public variable in editor
-			if (Input.GetKeyDown ("k")) {
+			if (Input.GetKeyDown ("n")) {
 
 				for (int i = 0; i < GRID_SIZE; i++) {
 					for (int j = 0; j < GRID_SIZE; j++) {
@@ -230,7 +242,7 @@ public class BrickControl : MonoBehaviour
 						GameObject a = Instantiate (tempGrid);
 						a.transform.parent = ground.transform;
 						a.transform.localPosition = grid [i, j];
-						//Debug.Log ("a: " + grid [i, j]);
+						Debug.Log ("a: " + grid [i, j]);
 
 					}
 				}
@@ -238,6 +250,7 @@ public class BrickControl : MonoBehaviour
 
 
 			ghostProjection ();
+
 		}
 	}
 
@@ -299,16 +312,16 @@ public class BrickControl : MonoBehaviour
 		}
 
 		//translate delta to world space
-		translateDelta = ground.transform.TransformPoint (translateDelta);
+		translateDelta = ground.transform.TransformVector (translateDelta);
 
 
 		//create new bounding box to check brick in bounds
-		Bounds gb = ground.GetComponent<Renderer> ().bounds;
+		Bounds gb = groundFloor.GetComponent<Renderer> ().bounds;
 		Vector3 ngbMin = new Vector3 (gb.min.x, float.MinValue, gb.min.z);
 		Vector3 ngbMax = new Vector3 (gb.max.x, float.MaxValue, gb.max.z);
 		Bounds groundBounds = new Bounds ();
 		groundBounds.SetMinMax (ngbMin, ngbMax);
-
+		Debug.Log (translateDelta);
 		foreach (Transform c in activeBrick.GetComponentInChildren<Transform>()) {						
 			//at least one brick would be out of bounds with this translate, revert and abort
 			if (!groundBounds.Contains (c.position + translateDelta)) {												
@@ -320,6 +333,7 @@ public class BrickControl : MonoBehaviour
 					activeBrickGridZ -= dir;
 					break;
 				}
+
 				return;
 			}				
 		}
@@ -410,14 +424,17 @@ public class BrickControl : MonoBehaviour
 			activeBrickGridZ = GRID_SIZE / 2;
 			Vector3 gridPos = activeBrick.transform.localPosition;
 			if (grid != null) {
+				//Debug.Log ("yes");
 				gridPos = grid [activeBrickGridX, activeBrickGridZ];
 			}
+			//activeBrick.transform.parent = ground.transform;
+			//Debug.Log (activeBrick.transform.parent.name);
 			activeBrick.transform.localPosition = new Vector3 (gridPos.x, activeBrick.transform.localPosition.y, gridPos.z);
-		
+			//Debug.Log ("whywhywhywhywhywhywhywhywhywhywhywhywhywhywhywhywhywhywhywhy " + activeBrick.transform.localPosition);
 			if (ghostBrick != null) {
 				ghostBrick.transform.position = activeBrick.transform.position;
 			}
-			//ghostBrick.transform.Translate (new Vector3 (0, -2, 0));
+
 		}
 	}
 
