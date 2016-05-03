@@ -393,13 +393,20 @@ public class BrickControl : MonoBehaviour {
 		//move active brick to initial position
 		activeBrick = GameController.activeBrick;
 		ghostBrick = GameController.ghostBrick;
-		activeBrickGridX = GRID_SIZE / 2;
-		activeBrickGridZ = GRID_SIZE / 2;
-		Vector3 gridPos = grid [activeBrickGridX, activeBrickGridZ];
-		activeBrick.transform.localPosition = new Vector3(gridPos.x, activeBrick.transform.localPosition.y, gridPos.z);
-
-		ghostBrick.transform.position = activeBrick.transform.position;
+		if (activeBrick != null) {
+			activeBrickGridX = GRID_SIZE / 2;
+			activeBrickGridZ = GRID_SIZE / 2;
+			Vector3 gridPos = activeBrick.transform.localPosition;
+			if (grid != null) {
+				gridPos = grid [activeBrickGridX, activeBrickGridZ];
+			}
+			activeBrick.transform.localPosition = new Vector3 (gridPos.x, activeBrick.transform.localPosition.y, gridPos.z);
+		
+			if (ghostBrick != null) {
+				ghostBrick.transform.position = activeBrick.transform.position;
+			}
 		//ghostBrick.transform.Translate (new Vector3 (0, -2, 0));
+		}
 	}
 
 	public void releaseActiveBrick() {
