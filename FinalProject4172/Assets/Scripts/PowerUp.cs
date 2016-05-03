@@ -26,13 +26,12 @@ public class PowerUp : MonoBehaviour {
 			
 		if (powerReady) {
 			Glow ();
+			transform.Rotate (new Vector3 (45, 45, 45) * Time.deltaTime);
 		}
 	}
 
 	public void youAreSelected(){
 		Debug.Log ("selected: " + gameObject);
-
-		GetComponent<Renderer>().material.color = Color.yellow;
 
 		Destroy (tL1);
 		Destroy (tL2);
