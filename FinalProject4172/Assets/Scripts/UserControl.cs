@@ -51,8 +51,9 @@ public class UserControl : MonoBehaviour {
 
 		//Rotation
 		if (marker == 1) {
-			Quaternion q = gameObject.transform.rotation;
-			board.transform.rotation = q;
+			Vector3 markerRot = gameObject.transform.eulerAngles;
+			Vector3 boardRot = board.transform.eulerAngles;
+			board.transform.eulerAngles = new Vector3 (boardRot.x, markerRot.y, boardRot.z);
 		}
 		if (marker == 2) {
 			Vector3 newAngle = transform.eulerAngles;
