@@ -23,7 +23,7 @@ public class LevelDestruction : MonoBehaviour {
 	}
 
 	public void DestroyLevel( ) {
-
+		Debug.Log("destroy level " + gameObject.name);
 		while (childBlocks.Count > 0) {
 			currentChild = (GameObject)childBlocks [childBlocks.Count-1];
 			childBlocks.RemoveAt (childBlocks.Count-1);
