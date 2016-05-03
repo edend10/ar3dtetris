@@ -29,6 +29,7 @@ public class GameController : MonoBehaviour {
 	public static GameObject ground;
 
 	bool paused = false;
+	float timeElapsed = 0f;
 
 	// Use this for initialization
 	void Start () {
@@ -51,8 +52,8 @@ public class GameController : MonoBehaviour {
 
 		if (!paused) {
 			float endTime = Time.time;
-			float time = endTime - startTime;
-			if (time > releaseTimer && time < createTimer) {
+			float time = endTime - startTime + timeElapsed;
+			if (time > releaseTimer && time < createTimer) {				
 				if (time % 1 == 0) {
 					showTimer -= time;
 				}
@@ -66,6 +67,7 @@ public class GameController : MonoBehaviour {
 			} else if (time > createTimer) {
 				createBrick ();
 				startTime = Time.time;
+				timeElapsed = 0f;
 			}
 
 			if (Input.GetKeyDown ("k")) { 
@@ -167,6 +169,12 @@ public class GameController : MonoBehaviour {
 
 	void pause(bool p){
 		paused = p;
+		if (paused) {
+			float endTime = Time.time;
+			timeElapsed = endTime - startTime;
+		} else {			
+			startTime = Time.time;
+		}
 	}
 
 }
