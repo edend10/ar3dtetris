@@ -192,7 +192,7 @@ public class GameController : MonoBehaviour {
 			timeElapsed = endTime - startTime;
 		}
 
-		SceneManager.LoadScene ("Menu");
+		//SceneManager.LoadScene ("Menu");
 
 	}
 
