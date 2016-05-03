@@ -14,9 +14,9 @@ public class GameController : MonoBehaviour {
 	BrickControl brickControl;
 
 
-	public static float releaseTimer = 10f;
+	public static float releaseTimer = 8f;
 	public static float createTimer = releaseTimer + 2f;
-	public static float showTimer;
+	public static float time;
 
 
 	float startTime;
@@ -43,7 +43,7 @@ public class GameController : MonoBehaviour {
 		startTime = Time.time;
 		createBrick();
 
-		showTimer = releaseTimer;
+		//showTimer = releaseTimer;
 
 	}
 
@@ -52,11 +52,11 @@ public class GameController : MonoBehaviour {
 
 		if (!paused) {
 			float endTime = Time.time;
-			float time = endTime - startTime + timeElapsed;
+			time = endTime - startTime + timeElapsed;
 			if (time > releaseTimer && time < createTimer) {				
-				if (time % 1 == 0) {
-					showTimer -= time;
-				}
+//				if (time % 1 == 0) {
+//					showTimer -= time;
+//				}
 
 				if (activeBrick != null) {
 					activeBrick.tag = "Untagged";
