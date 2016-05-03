@@ -24,16 +24,23 @@ public class UserControl : MonoBehaviour {
 		Vector3 boardTargetPosition = boardTarget.transform.position;
 		Vector3 fixedVector = boardTargetPosition - headPosition;
 
+		float displacement = targetPosition.z - boardTargetPosition.z;
+		Vector3 move = new Vector3 (boardPosition.x, boardPosition.y, 2 * displacement);
+		board.transform.position = move;
+
+
+
+		/*
 
 		//Translation
-		fixedDistance = Mathf.Abs(boardTargetPosition.y - headPosition.y);
+		fixedDistance = Mathf.Abs(boardTargetPosition.z - headPosition.z);
 
 		float z = Mathf.Abs(targetPosition.z - headPosition.z);
 
 		float displacement = z - fixedDistance;
-		//Debug.Log (displacement);
 		Vector3 move = new Vector3 (boardPosition.x, boardPosition.y, displacement);
 		board.transform.position = move;
+		*/
 
 		//Rotation
 
