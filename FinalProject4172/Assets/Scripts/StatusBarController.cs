@@ -13,18 +13,6 @@ public class StatusBarController : MonoBehaviour {
 
 	}
 
-	
-	// Update is called once per frame
-	void Update () {
-		for (int i = 0; i <= GameController.releaseTimer; ++i) {
-			float obj = GameController.releaseTimer - 10;
-			string temp = "StatusCube" + obj;
-
-
-			//GameObject.Find (temp).SetActive (false);
-		}
-	}
-
 
 
 	void scaleBoxDown() {
@@ -37,9 +25,7 @@ public class StatusBarController : MonoBehaviour {
 			else {
 				gameObject.transform.localScale = initBarScale;
 			}
-				
-	
-			GameObject.Find (temp).SetActive (true);
+
 
 		}
 
