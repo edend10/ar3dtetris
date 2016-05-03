@@ -581,7 +581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VuforiaLicenseKey: ASo4L9X/////AAAAAUjbMPgc4UPwkaFDx0aoWCoQH/SC47+TyT7deCr3lPdYaeGfdTstuIMcXnDle+chYtg5TjH8ItBG+TQmvDRYTlqPNIEmQU34Ip8CaDFWjD7zrwuzWDgv+xX+X3kra6pgUe6PbE+z+FQLaqxiw/YzajYon45StR1w1gU7wYvGxgnF4EKqzVn+WpHHA/8qwtUHeekegl+LIWWfX3BZgtkJ53rbhhz8ICGJ+WjB2AMH67Tft4czOyxiCeidm6x08YG5fSK8CeBKHorI5kO3anwhnyhVRc8iDiYTJ9Kp88tL1yz6T7/KPGfzZ48fWsvPmpHh/sNE6Qng4gl263E70AZ8HIj8VEQJUMz1Zj0mjr2jToLU
   CameraDeviceModeSetting: -1
-  MaxSimultaneousImageTargets: 5
+  MaxSimultaneousImageTargets: 10
   MaxSimultaneousObjectTargets: 1
   UseDelayedLoadingObjectTargets: 0
   CameraDirection: 0
