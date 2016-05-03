@@ -373,7 +373,7 @@ public class BrickControl : MonoBehaviour
 		}
 			
 		//create new bounding box to check brick in bounds
-		Bounds gb = ground.GetComponent<Renderer> ().bounds;
+		Bounds gb = groundFloor.GetComponent<Renderer> ().bounds;
 		Vector3 ngbMin = new Vector3 (gb.min.x, float.MinValue, gb.min.z);
 		Vector3 ngbMax = new Vector3 (gb.max.x, float.MaxValue, gb.max.z);
 		Bounds groundBounds = new Bounds ();
