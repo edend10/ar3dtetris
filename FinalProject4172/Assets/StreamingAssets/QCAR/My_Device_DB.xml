@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="leaf2" size="6.000000 2.147567" />
+    <ImageTarget name="leaf" size="6.000000 16.763159" />
+    <ImageTarget name="t2" size="6.000000 4.636364" />
+    <CylinderTarget name="wand" sideLength="8.900000"/>
+  </Tracking>
+</QCARConfig>
