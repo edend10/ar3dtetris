@@ -2416,7 +2416,8 @@ Prefab:
       propertyPath: m_Name
       value: DestroyUp
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6400000, guid: a72885e93c1e4c5449d8f2a4888f2ed7, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a72885e93c1e4c5449d8f2a4888f2ed7, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &896450048 stripped
@@ -2490,6 +2491,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &896450053
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 896450049}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 73.72595, y: -187.06712, z: -90.18826}
+  m_Center: {x: -5.3650618, y: -4.8844337, z: 4.8571153}
 --- !u!1 &950882250
 GameObject:
   m_ObjectHideFlags: 0
