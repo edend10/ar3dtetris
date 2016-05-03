@@ -6,7 +6,7 @@ public class LevelController : MonoBehaviour {
 	TextMesh levelText;
 	TextMesh levelsClearedText; 
 	public static int levelsCleared;
-	public static int level;
+	public static int level = 0;
 	public static int totalLevelsCleared;
 
 
@@ -14,7 +14,7 @@ public class LevelController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
-		level = 0;
+		//level = 0;
 		levelsCleared = 0;
 		totalLevelsCleared = 0;
 
