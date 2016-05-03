@@ -5,7 +5,7 @@ public class L_Shape : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		transform.position = new Vector3 (0, 12, 0);
+		transform.position = new Vector3 (0, 18, 0);
 		transform.localScale = new Vector3 (20, 20, 20);
 		transform.rotation = new Quaternion (0, 0, 0, 0);
 	}
