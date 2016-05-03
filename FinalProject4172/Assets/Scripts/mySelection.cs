@@ -37,13 +37,15 @@ public class mySelection : MonoBehaviour
 			int layer = o.layer;
 			if (layer == 8) {
 			} else {
+				float endTime = Time.time;
+				float time = endTime - startTime;
 				if (o == selectedObject) {
+					if (time > 4) {
+						selectedObject = null;
+					}
 				
 				} else if (o == hitObject) {
 					center.transform.localScale += new Vector3 (0.01f, 0.01f, 0.01f);
-
-					float endTime = Time.time;
-					float time = endTime - startTime;
 					if (time > 2) {
 						Debug.Log ("Raycast: " + hit.collider.gameObject);
 						selectedObject = hitObject;

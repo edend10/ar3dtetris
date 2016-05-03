@@ -21,9 +21,16 @@ public class Pause : MonoBehaviour {
 
 	public void youAreSelected(){
 		
-		if (status.text == "Pause") {
+		if (paused) {
+			gameController.SendMessage ("pause", false);
+			paused = false;
+			status.text = "Pause";
+		} 
+		else {
+			gameController.SendMessage ("pause", true);
+			paused = true;
+			status.text = "Play";
 		}
-		gameController.SendMessage ("pause", true);
 		
 	}
 }
