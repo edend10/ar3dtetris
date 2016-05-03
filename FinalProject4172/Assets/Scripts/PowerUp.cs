@@ -20,6 +20,7 @@ public class PowerUp : MonoBehaviour {
 
 		powerReady = true;
 		goFast = false;
+		gameObject.SetActive (false);
 
 	}
 	
@@ -27,19 +28,19 @@ public class PowerUp : MonoBehaviour {
 	void Update () {
 			
 		if (powerReady) {
-			Glow (10);
+			Glow (10, 0.5f);
 			transform.Rotate (new Vector3 (45, 45, 45) * Time.deltaTime);
 		}
 
 		if (goFast) {
-			Glow (40);
+			Glow (50, 2.0f);
 		}
 
 		if (transform.position.y < 1) {
 			gameObject.SetActive(false);
 		}
 
-		if ((Time.time - tempTime) > 1) {
+		if ((Time.time - tempTime) > 1.2) {
 			gameObject.SetActive (false);
 		}
 			
@@ -61,9 +62,9 @@ public class PowerUp : MonoBehaviour {
 		g.GetComponent<LevelDestruction> ().DestroyLevel ();
 	}
 
-	public void Glow(int speed){
+	public void Glow(int speed, float range){
 
-		halo.range = 3.0f + Mathf.Sin(Time.time * speed) * 0.5f;
+		halo.range = 3.0f + Mathf.Sin(Time.time * speed) * range;
 	}
 
 }

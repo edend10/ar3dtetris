@@ -8,6 +8,8 @@ public class UserControl : MonoBehaviour {
 
 	public GameObject boardTarget;
 
+	public int marker;
+
 
 	float fixedDistance = 2.5f;
 
@@ -45,9 +47,12 @@ public class UserControl : MonoBehaviour {
 		*/
 
 		//Rotation
-
-		Quaternion q = gameObject.transform.rotation;
-		board.transform.rotation = q;
-	
+		if (marker == 1) {
+			Quaternion q = gameObject.transform.rotation;
+			board.transform.rotation = q;
+		}
+		if (marker == 2) {
+			
+		}
 	}
 }
