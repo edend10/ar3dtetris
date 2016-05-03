@@ -45,7 +45,7 @@ public class mySelection : MonoBehaviour
 					}
 				
 				} else if (o == hitObject) {
-					center.transform.localScale += new Vector3 (0.01f, 0.01f, 0.01f);
+					center.transform.localScale += new Vector3 (0.005f, 0.005f, 0.005f);
 					if (time > 2) {
 						Debug.Log ("Raycast: " + hit.collider.gameObject);
 						selectedObject = hitObject;

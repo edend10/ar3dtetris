@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
@@ -175,6 +176,24 @@ public class GameController : MonoBehaviour {
 		} else {			
 			startTime = Time.time;
 		}
+	}
+
+	public void gameOver() {
+
+		gameObject.SendMessage ("pause", true);
+		GameObject gameOver = GameObject.Find ("Game Over");
+		gameOver.SetActive (true);
+		startTime = Time.time;
+		float endTime = Time.time;
+		timeElapsed = endTime - startTime;
+
+		while (timeElapsed < 4) {
+			endTime = Time.time;
+			timeElapsed = endTime - startTime;
+		}
+
+		SceneManager.LoadScene ("Menu");
+
 	}
 
 }
