@@ -47,7 +47,7 @@ public class PowerUp : MonoBehaviour {
 
 	public void Glow(){
 
-		halo.range = 2;
+		halo.range = 4 + Mathf.Sin(Time.time * 10);
 	}
 
 }
