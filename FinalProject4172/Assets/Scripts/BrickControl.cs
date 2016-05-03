@@ -425,5 +425,10 @@ public class BrickControl : MonoBehaviour
 	{
 		activeBrick = null;
 	}
+
+	public void pause(bool p){
+
+		paused = p;
+	}
 	
 }
