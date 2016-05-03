@@ -7,6 +7,8 @@ public class LevelController : MonoBehaviour {
 	public static int levelsCleared;
 	public static int level;
 
+	GameObject statusBar;
+
 
 
 	// Use this for initialization
