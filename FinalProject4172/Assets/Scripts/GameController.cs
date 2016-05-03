@@ -186,12 +186,7 @@ public class GameController : MonoBehaviour {
 		startTime = Time.time;
 		float endTime = Time.time;
 		timeElapsed = endTime - startTime;
-		/*
-		while (timeElapsed < 2) {
-			endTime = Time.time;
-			timeElapsed = endTime - startTime;
-		}
-		*/
+
 		SceneManager.LoadScene ("Menu");
 
 	}
