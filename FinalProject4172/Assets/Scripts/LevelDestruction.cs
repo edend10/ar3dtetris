@@ -9,9 +9,9 @@ public class LevelDestruction : MonoBehaviour {
 
 
 
+
 	// Use this for initialization
 	void Start () {
-
 		InvokeRepeating ("CheckIfFull", 2, 1);
 
 	}
@@ -29,8 +29,10 @@ public class LevelDestruction : MonoBehaviour {
 			childBlocks.RemoveAt (childBlocks.Count-1);
 			currentChild.SetActive (false);
 		}
-		if (LevelController.levelsCleared < 5)
+		if (LevelController.levelsCleared < 5) {
 			++LevelController.levelsCleared;
+			++LevelController.totalLevelsCleared;
+		}
 
 	}
 
