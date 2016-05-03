@@ -177,4 +177,9 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
+	public void gameOver() {
+
+
+	}
+
 }
