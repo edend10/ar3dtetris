@@ -187,7 +187,7 @@ public class GameController : MonoBehaviour {
 		float endTime = Time.time;
 		timeElapsed = endTime - startTime;
 
-		while (timeElapsed < 4) {
+		while (timeElapsed < 2) {
 			endTime = Time.time;
 			timeElapsed = endTime - startTime;
 		}
