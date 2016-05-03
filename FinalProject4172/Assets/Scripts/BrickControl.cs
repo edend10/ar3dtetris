@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BrickControl : MonoBehaviour {
+public class BrickControl : MonoBehaviour
+{
 
 	//this script needs to be attached to the same GameObject as the GameController
 
@@ -38,7 +39,8 @@ public class BrickControl : MonoBehaviour {
 	const int GRID_SIZE = 5;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		//a debug brick
 //		GameObject temp = GameObject.Find("TestBrick");
 //		if (temp != null) {
@@ -55,7 +57,8 @@ public class BrickControl : MonoBehaviour {
 		wandTip = GameController.wandTip;
 		oldRot = wand.transform.eulerAngles;
 		env = GameController.environment;
-		ground = GameObject.Find ("Ground");;
+		ground = GameObject.Find ("Ground");
+		;
 		//Renderer envRenderer = env.transform.GetComponent<Renderer> ();
 
 		//float area = envRenderer.bounds.size.x * envRenderer.bounds.size.z;
@@ -67,7 +70,7 @@ public class BrickControl : MonoBehaviour {
 		for (int i = 0; i < GRID_SIZE; i++) {
 			for (int j = 0; j < GRID_SIZE; j++) {
 				//Debug.Log (gridSquareCenterOffset);
-				grid [i, j] = new Vector3(-0.5f + i * (1f / GRID_SIZE) + gridSquareCenterOffset, 0f, -0.5f + j * (1f / GRID_SIZE) + gridSquareCenterOffset);
+				grid [i, j] = new Vector3 (-0.5f + i * (1f / GRID_SIZE) + gridSquareCenterOffset, 0f, -0.5f + j * (1f / GRID_SIZE) + gridSquareCenterOffset);
 			}
 		}
 
@@ -75,9 +78,10 @@ public class BrickControl : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {	
-	
-		if (!paused) {
+
+	void Update ()
+	{		
+		if (activeBrick != null && !paused) {
 			Vector3 currRot = wand.transform.eulerAngles;
 
 			//set manipulation mode
@@ -237,7 +241,8 @@ public class BrickControl : MonoBehaviour {
 		}
 	}
 
-	void ghostProjection() {
+	void ghostProjection ()
+	{
 		if (ghostBrick != null && activeBrick != null) {
 			
 			ghostBrick.transform.rotation = activeBrick.transform.rotation;
@@ -268,7 +273,8 @@ public class BrickControl : MonoBehaviour {
 	}
 
 	//TranslateBrick method used for keyboard translation (debugging)
-	void TranslateBrick(int axis, int dir) {
+	void TranslateBrick (int axis, int dir)
+	{
 
 		Vector3 translateDelta = new Vector3 (0, 0, 0); //used for bounds check
 
@@ -298,8 +304,8 @@ public class BrickControl : MonoBehaviour {
 
 		//create new bounding box to check brick in bounds
 		Bounds gb = ground.GetComponent<Renderer> ().bounds;
-		Vector3 ngbMin = new Vector3 (gb.min.x, float.MinValue ,gb.min.z);
-		Vector3 ngbMax = new Vector3 (gb.max.x, float.MaxValue ,gb.max.z);
+		Vector3 ngbMin = new Vector3 (gb.min.x, float.MinValue, gb.min.z);
+		Vector3 ngbMax = new Vector3 (gb.max.x, float.MaxValue, gb.max.z);
 		Bounds groundBounds = new Bounds ();
 		groundBounds.SetMinMax (ngbMin, ngbMax);
 
@@ -320,13 +326,14 @@ public class BrickControl : MonoBehaviour {
 
 	
 		Vector3 gridPos = grid [activeBrickGridX, activeBrickGridZ];
-		activeBrick.transform.localPosition = new Vector3(gridPos.x, activeBrick.transform.localPosition.y, gridPos.z);
+		activeBrick.transform.localPosition = new Vector3 (gridPos.x, activeBrick.transform.localPosition.y, gridPos.z);
 
 
 	}
 
 	//RotateBrick method used for BOTH wand rotation (game) and keyboard rotation (debugging)
-	void RotateBrick(int axis, int dir) {
+	void RotateBrick (int axis, int dir)
+	{
 
 		float angleInRad = Mathf.Deg2Rad * ROTATION_DEGREES;
 		float cosTheta = dir * Mathf.Cos (angleInRad);
@@ -351,8 +358,8 @@ public class BrickControl : MonoBehaviour {
 			
 		//create new bounding box to check brick in bounds
 		Bounds gb = ground.GetComponent<Renderer> ().bounds;
-		Vector3 ngbMin = new Vector3 (gb.min.x, float.MinValue ,gb.min.z);
-		Vector3 ngbMax = new Vector3 (gb.max.x, float.MaxValue ,gb.max.z);
+		Vector3 ngbMin = new Vector3 (gb.min.x, float.MinValue, gb.min.z);
+		Vector3 ngbMax = new Vector3 (gb.max.x, float.MaxValue, gb.max.z);
 		Bounds groundBounds = new Bounds ();
 		groundBounds.SetMinMax (ngbMin, ngbMax);
 
@@ -379,34 +386,43 @@ public class BrickControl : MonoBehaviour {
 				break;
 
 			}
-			Vector3 newChildPosition = new Vector3(rx,ry,rz);
-			if(!groundBounds.Contains(newChildPosition)) {	
+			Vector3 newChildPosition = new Vector3 (rx, ry, rz);
+			if (!groundBounds.Contains (newChildPosition)) {	
 				//if at least one cube is out of bounds the rotation is aborted
 				return;
 			}
 		}
 		//end of bounds check
 
-		activeBrick.transform.Rotate(x,y,z, Space.World);
+		activeBrick.transform.Rotate (x, y, z, Space.World);
 		endRotationPause = Time.time + ROTATION_PAUSE; //set rotation pause to prevent rotating the brick in counter direction when bringing wand back to original orientation
 
 	}
-		
 
-	public void initBrickPos() {
+
+	public void initBrickPos ()
+	{
 		//move active brick to initial position
 		activeBrick = GameController.activeBrick;
 		ghostBrick = GameController.ghostBrick;
-		activeBrickGridX = GRID_SIZE / 2;
-		activeBrickGridZ = GRID_SIZE / 2;
-		Vector3 gridPos = grid [activeBrickGridX, activeBrickGridZ];
-		activeBrick.transform.localPosition = new Vector3(gridPos.x, activeBrick.transform.localPosition.y, gridPos.z);
-
-		ghostBrick.transform.position = activeBrick.transform.position;
-		//ghostBrick.transform.Translate (new Vector3 (0, -2, 0));
+		if (activeBrick != null) {
+			activeBrickGridX = GRID_SIZE / 2;
+			activeBrickGridZ = GRID_SIZE / 2;
+			Vector3 gridPos = activeBrick.transform.localPosition;
+			if (grid != null) {
+				gridPos = grid [activeBrickGridX, activeBrickGridZ];
+			}
+			activeBrick.transform.localPosition = new Vector3 (gridPos.x, activeBrick.transform.localPosition.y, gridPos.z);
+		
+			if (ghostBrick != null) {
+				ghostBrick.transform.position = activeBrick.transform.position;
+			}
+			//ghostBrick.transform.Translate (new Vector3 (0, -2, 0));
+		}
 	}
 
-	public void releaseActiveBrick() {
+	public void releaseActiveBrick ()
+	{
 		activeBrick = null;
 	}
 	

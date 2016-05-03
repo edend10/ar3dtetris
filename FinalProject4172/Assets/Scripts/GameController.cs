@@ -132,16 +132,18 @@ public class GameController : MonoBehaviour {
 	}
 
 	void releaseBrick() {
-		Rigidbody r = activeBrick.GetComponents<Rigidbody> () [0];
-		r.useGravity = true;
-		activeBrick.layer = 8; //ignoreselection layer instead of ignoreraycast
-		foreach (Transform child in activeBrick.GetComponentsInChildren<Transform>()) {			
-			child.gameObject.layer = 8;
-		}
+		if (activeBrick != null) {
+			Rigidbody r = activeBrick.GetComponents<Rigidbody> () [0];
+			r.useGravity = true;
+			activeBrick.layer = 8; //ignoreselection layer instead of ignoreraycast
+			foreach (Transform child in activeBrick.GetComponentsInChildren<Transform>()) {			
+				child.gameObject.layer = 8;
+			}
 
-		Destroy (ghostBrick);
-		activeBrick = null;
-		brickControl.releaseActiveBrick ();
+			Destroy (ghostBrick);
+			activeBrick = null;
+			brickControl.releaseActiveBrick ();
+		}
 	}
 
 	void mySelect(Touch touch){
