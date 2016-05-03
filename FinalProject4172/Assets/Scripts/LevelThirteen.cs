@@ -12,9 +12,10 @@ public class LevelThirteen : MonoBehaviour {
 	}
 
 	void Update() {
-		if (timeStay - timeIn > 2f) {
+		if (timeStay - timeIn > 1f) {
 			Debug.Log ("GAME OVER");
-			g.GetComponent<GameController> ().gameOver ();
+			GameObject GC = GameObject.Find ("GameController");
+			GC.SendMessage ("gameOver");
 		}
 	}
 

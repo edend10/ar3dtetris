@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour {
 
 	BrickControl brickControl;
 
+	public GameObject youAreDone;
 
 	public static float releaseTimer = 8f;
 	public static float createTimer = releaseTimer + 2f;
@@ -181,8 +182,7 @@ public class GameController : MonoBehaviour {
 	public void gameOver() {
 
 		gameObject.SendMessage ("pause", true);
-		GameObject gameOver = GameObject.Find ("Game Over");
-		gameOver.SetActive (true);
+		youAreDone.SetActive (true);
 		startTime = Time.time;
 		float endTime = Time.time;
 		timeElapsed = endTime - startTime;
