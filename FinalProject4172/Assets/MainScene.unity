@@ -2246,6 +2246,17 @@ MonoBehaviour:
   tL1: {fileID: 381668716}
   tL2: {fileID: 1142170416}
   tL3: {fileID: 1046699836}
+--- !u!122 &896450051
+Halo:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 896450049}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4282006271
+  m_Size: 0.86
 --- !u!1 &950882250
 GameObject:
   m_ObjectHideFlags: 0
