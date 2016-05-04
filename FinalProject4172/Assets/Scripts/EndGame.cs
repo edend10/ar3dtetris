@@ -15,7 +15,8 @@ public class EndGame : MonoBehaviour {
 	}
 
 	public void youAreSelected(){
-
+		GameController.releaseTimer = 8f; 
+		LevelController.level = 0;
 		SceneManager.LoadScene ("Menu");
 	}
 }
