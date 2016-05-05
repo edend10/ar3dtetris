@@ -36,18 +36,21 @@ public class mySelection : MonoBehaviour
 			GameObject o = hit.collider.gameObject;
 			int layer = o.layer;
 			if (layer == 8) {
-			} else {
+			} 
+			else {
 				float endTime = Time.time;
 				float time = endTime - startTime;
 				if (o == selectedObject) {
 					if (time > 4) {
 						selectedObject = null;
 					}
+					center.transform.localScale = new Vector3 (0.1f, 0.1f, 0.1f);
+					Renderer r = center.GetComponents<Renderer> () [0];
+					r.material = normalMaterial;
 				
 				} else if (o == hitObject) {
 					center.transform.localScale += new Vector3 (0.005f, 0.005f, 0.005f);
 					if (time > 2) {
-						Debug.Log ("Raycast: " + hit.collider.gameObject);
 						selectedObject = hitObject;
 						Renderer r = center.GetComponents<Renderer> () [0];
 						r.material = selectedMaterial;
@@ -60,9 +63,9 @@ public class mySelection : MonoBehaviour
 				}
 			}
 		} else {
-			center.transform.localScale = new Vector3(0.1f,0.1f,0.1f);
+			center.transform.localScale = new Vector3 (0.1f, 0.1f, 0.1f);
 
-			Renderer r = center.GetComponents<Renderer>()[0];
+			Renderer r = center.GetComponents<Renderer> () [0];
 			r.material = normalMaterial;
 			hitObject = null;
 		}
