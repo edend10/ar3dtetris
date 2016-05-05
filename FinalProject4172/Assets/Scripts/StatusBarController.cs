@@ -5,15 +5,12 @@ public class StatusBarController : MonoBehaviour {
 
 	private Vector3 initBarScale;
 
-	// Use this for initialization
 	void Start () {
 
 		initBarScale = new Vector3(1.0f, 0.1f, 0.1f);
 		InvokeRepeating ("scaleBoxDown", 0f, .9f);
 
 	}
-
-
 
 	void scaleBoxDown() {
 		if (!Pause.paused && !Pause.targetLost) {

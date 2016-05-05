@@ -23,10 +23,8 @@ public class PowerUp : MonoBehaviour {
 		gameObject.SetActive (false);
 
 	}
-	
 
 	void Update () {
-
 			
 		if (powerReady) {
 			Glow (10, 0.5f);

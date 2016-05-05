@@ -7,20 +7,13 @@ public class Pause : MonoBehaviour {
 	TextMesh status;
 
 	public static bool paused = true;
-
 	public static bool targetLost = true;
 
-	// Use this for initialization
 	void Start () {
 		gameController = GameObject.FindGameObjectsWithTag("GameController")[0];
 		status = GameObject.Find("Pause").GetComponent<TextMesh> ();
 		paused = false;
 		targetLost = false;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 
 	public void youAreSelected(){

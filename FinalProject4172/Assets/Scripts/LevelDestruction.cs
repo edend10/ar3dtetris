@@ -7,9 +7,6 @@ public class LevelDestruction : MonoBehaviour {
 	GameObject currentChild;
 	int numToClear = 5;
 
-
-
-
 	// Use this for initialization
 	void Start () {
 		InvokeRepeating ("CheckIfFull", 0, GameController.releaseTimer + 3);
@@ -29,7 +26,6 @@ public class LevelDestruction : MonoBehaviour {
 	}
 
 	public void DestroyLevel( ) {
-		Debug.Log("destroy level " + gameObject.name + " num blocks: " + childBlocks.Count);
 		while (childBlocks.Count > 0) {
 			currentChild = (GameObject)childBlocks [childBlocks.Count-1];
 			childBlocks.RemoveAt (childBlocks.Count-1);

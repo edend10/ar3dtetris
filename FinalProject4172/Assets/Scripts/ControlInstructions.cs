@@ -48,7 +48,6 @@ public class ControlInstructions : MonoBehaviour {
 		texts [2] = t3;
 		texts [3] = t4;
 		t.text = texts[n];
-
 		pageNumber = pageNumberLabel.GetComponent<TextMesh> ();
 	}
 

@@ -7,10 +7,6 @@ public class LevelThirteen : MonoBehaviour {
 
 	float timeIn, timeOut, timeStay;
 
-	void Start() {
-
-	}
-
 	void Update() {
 		if (timeStay - timeIn > 1f) {
 			Debug.Log ("GAME OVER");

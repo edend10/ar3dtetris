@@ -5,16 +5,6 @@ public class OpenPanel : MonoBehaviour {
 
 	public GameObject panel;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-		
 	public void youAreSelected(){
 		GameObject control = GameObject.Find ("GameController");
 

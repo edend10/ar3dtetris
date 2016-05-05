@@ -57,10 +57,6 @@ public class GameController : MonoBehaviour {
 			float endTime = Time.time;
 			time = endTime - startTime + timeElapsed;
 			if (time > releaseTimer && time < createTimer) {				
-//				if (time % 1 == 0) {
-//					showTimer -= time;
-//				}
-
 				if (activeBrick != null) {
 					activeBrick.tag = "Untagged";
 				}
@@ -79,7 +75,6 @@ public class GameController : MonoBehaviour {
 				releaseBrick ();
 			}
 		}
-
 	}
 
 	public void createBrick(){
@@ -92,7 +87,6 @@ public class GameController : MonoBehaviour {
 
 		System.Random r = new System.Random ();
 		int number = r.Next (1, 6);
-		//int number = 2;
 		GameObject n = null;
 		if (number == 1) {
 			n = Instantiate (I);
@@ -132,7 +126,6 @@ public class GameController : MonoBehaviour {
 		}
 		brickControl.initBrickPos ();
 
-
 	}
 
 	void releaseBrick() {
@@ -158,17 +151,7 @@ public class GameController : MonoBehaviour {
 			r.useGravity = true;
 		}	
 	}
-
-	private void OnEnable()
-	{
-		UserInputHandler.OnTap += mySelect;
-	}
-
-	private void OnDisable()
-	{
-		UserInputHandler.OnTap -= mySelect;
-	}
-
+		
 	void pause(bool p){
 		if (Pause.paused) {
 			float endTime = Time.time;
@@ -182,13 +165,19 @@ public class GameController : MonoBehaviour {
 
 		gameObject.SendMessage ("pause", true);
 		youAreDone.SetActive (true);
-		startTime = Time.time;
-		float endTime = Time.time;
-		timeElapsed = endTime - startTime;
 
 		// reset timer/level
 		GameController.releaseTimer = 8f; 
 		LevelController.level = 0;
+		LevelController.levelsCleared = 0;
+		LevelController.totalLevelsCleared = 0;
+		ControlInstructions.n = 0;
+
+		Destroy (activeBrick);
+		activeBrick = null;
+
+		Destroy (ghostBrick);
+		ghostBrick = null;
 
 		SceneManager.LoadScene ("Menu");
 

@@ -17,6 +17,17 @@ public class EndGame : MonoBehaviour {
 	public void youAreSelected(){
 		GameController.releaseTimer = 8f; 
 		LevelController.level = 0;
+		LevelController.levelsCleared = 0;
+		LevelController.totalLevelsCleared = 0;
+
+		ControlInstructions.n = 0;
+
+		Destroy (GameController.activeBrick);
+		GameController.activeBrick = null;
+
+		Destroy (GameController.ghostBrick);
+		GameController.ghostBrick = null;
+
 		SceneManager.LoadScene ("Menu");
 	}
 }

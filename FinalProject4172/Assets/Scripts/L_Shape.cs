@@ -9,11 +9,6 @@ public class L_Shape : MonoBehaviour {
 		transform.localScale = new Vector3 (20, 20, 20);
 		transform.rotation = new Quaternion (0, 0, 0, 0);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	public void moveLeft(){
 		Vector3 temp = transform.position;

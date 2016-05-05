@@ -18,11 +18,9 @@ public class MiniMap : MonoBehaviour {
 	void Update () {
 		headPosition = ARcam.transform.position - (ARcam.transform.worldToLocalMatrix.MultiplyVector(transform.forward));;
 		head.transform.position = headPosition;
-//		Debug.Log (headPosition);
 
 		Plane[] planes = GeometryUtility.CalculateFrustumPlanes(ARcam);
 		//isHeadVisible = GeometryUtility.TestPlanesAABB(planes, headCol.bounds);
 
-		//Debug.Log (head.GetComponent<Renderer>().isVisible);
 	}
 }
