@@ -28,8 +28,8 @@ public class UserControlImageTarget : MonoBehaviour {
 
 		float travelTargetTransZDiff = (travelTargetPosition - oldTravelTargetPosition).z;
 
-		board.transform.Translate (0,0,travelTargetTransZDiff);
-		//Debug.Log ("AutomnTarget: " + travelTargetPosition + " | StonesTarget: " + boardTarget);
+		board.transform.Translate (0,0,travelTargetTransZDiff, Space.World);
+		//Debug.Log ("ZDIFF: " + travelTargetTransZDiff + " | AutomnTarget: " + travelTargetPosition + " | StonesTarget: " + boardTargetPosition);
 		oldTravelTargetPosition = travelTargetPosition;
 
 
