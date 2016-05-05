@@ -21,7 +21,7 @@ public class MiniMap : MonoBehaviour {
 //		Debug.Log (headPosition);
 
 		Plane[] planes = GeometryUtility.CalculateFrustumPlanes(ARcam);
-		isHeadVisible = GeometryUtility.TestPlanesAABB(planes, headCol.bounds);
+		//isHeadVisible = GeometryUtility.TestPlanesAABB(planes, headCol.bounds);
 
 		//Debug.Log (head.GetComponent<Renderer>().isVisible);
 	}

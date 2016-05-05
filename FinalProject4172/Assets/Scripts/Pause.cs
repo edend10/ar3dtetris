@@ -37,13 +37,4 @@ public class Pause : MonoBehaviour {
 		}
 		
 	}
-
-	private void OnEnable()
-	{
-		targetLost = false;
-	}
-	private void OnDisable()
-	{
-		targetLost = true;
-	}
 }
