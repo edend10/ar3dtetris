@@ -22,7 +22,7 @@ public class ControlInstructions : MonoBehaviour {
 
 	string t2 = "To move/rotate it, simply move/rotate\n" +
 	            "the wand in the corresponding direction.\n" +
-	            "To move the board use the image target " +
+	            "To move the board use the image target\n" +
 	            "labeled travel. Slide the target forward\n" +
 	            "or backward to move the board on the z axis.\n" +
 	            "Rotate the target to rotate the board.\n\n\n";
