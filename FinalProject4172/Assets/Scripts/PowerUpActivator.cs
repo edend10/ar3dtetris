@@ -15,8 +15,6 @@ public class PowerUpActivator : MonoBehaviour {
 
 		if (Time.time > 15 && Time.time < 21) {
 			destroyPowerUp.gameObject.SetActive (true);
-			Debug.Log (destroyPowerUp.transform.position);
-
 		}
 
 		if (Time.time > 45 && Time.time < 45.3) {
