@@ -186,6 +186,10 @@ public class GameController : MonoBehaviour {
 		float endTime = Time.time;
 		timeElapsed = endTime - startTime;
 
+		// reset timer/level
+		GameController.releaseTimer = 8f; 
+		LevelController.level = 0;
+
 		SceneManager.LoadScene ("Menu");
 
 	}
