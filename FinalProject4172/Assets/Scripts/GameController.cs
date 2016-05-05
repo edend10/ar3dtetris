@@ -32,7 +32,7 @@ public class GameController : MonoBehaviour {
 
 	float timeElapsed = 0f;
 
-	public static bool creatingBrick = false;
+	public static bool readyToCheck = false;
 
 	// Use this for initialization
 	void Start () {
@@ -64,12 +64,10 @@ public class GameController : MonoBehaviour {
 				if (activeBrick != null) {
 					activeBrick.tag = "Untagged";
 				}
-				
 				releaseBrick ();
 
 			} else if (time > createTimer) {
 				createBrick ();
-				creatingBrick = true; 
 				startTime = Time.time;
 				timeElapsed = 0f;
 			}

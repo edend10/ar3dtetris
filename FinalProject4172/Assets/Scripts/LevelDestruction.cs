@@ -12,20 +12,18 @@ public class LevelDestruction : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		InvokeRepeating ("CheckIfFull", 2f,2f);
 	}
 
 	void Update() {
-		if (GameController.creatingBrick)
-			CheckIfFull ();
+//		if (GameController.readyToCheck)
+//			CheckIfFull ();
 	}
 
 	public void CheckIfFull() {
 		if (!Pause.paused && !Pause.targetLost) {
-			if (GameController.time > GameController.createTimer) {
-				if (childBlocks.Count >= numToClear) {
-					DestroyLevel ();
-				}
+			if (childBlocks.Count >= numToClear) {
+				DestroyLevel ();
 			}
 		}
 	}
@@ -36,6 +34,7 @@ public class LevelDestruction : MonoBehaviour {
 			currentChild = (GameObject)childBlocks [childBlocks.Count-1];
 			childBlocks.RemoveAt (childBlocks.Count-1);
 			currentChild.SetActive (false);
+			Destroy (currentChild);
 		}
 		if (LevelController.levelsCleared < 5) {
 			++LevelController.levelsCleared;
@@ -51,6 +50,7 @@ public class LevelDestruction : MonoBehaviour {
 
 	void OnTriggerExit (Collider block) {
 		childBlocks.Remove (block.gameObject);
+
 	}
 
 
