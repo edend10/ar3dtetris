@@ -175,7 +175,7 @@ public class BrickControl : MonoBehaviour
 
 
 					//check in bounds
-					Vector3 translateDelta = ground.transform.TransformPoint (gridPos - activeBrick.transform.localPosition);
+					Vector3 translateDelta = gridPos - activeBrick.transform.localPosition;
 //				Bounds gb = groundFloor.GetComponent<Renderer> ().bounds;
 //				Vector3 ngbMin = new Vector3 (gb.min.x, float.MinValue, gb.min.z);
 //				Vector3 ngbMax = new Vector3 (gb.max.x, float.MaxValue, gb.max.z);
@@ -186,8 +186,9 @@ public class BrickControl : MonoBehaviour
 					foreach (Transform c in activeBrick.GetComponentInChildren<Transform>()) {
 						//if at least one brick out of bounds with this grid position abort
 						//if (!groundBounds.Contains (c.position + translateDelta)) {								
-						Vector3 newCPos = ground.transform.InverseTransformPoint (c.position + translateDelta);
+						Vector3 newCPos = c.localPosition + translateDelta;
 						Vector2 newCPos2D = new Vector2 (newCPos.x, newCPos.z);
+						Debug.Log (newCPos2D);
 						Rect rec = new Rect (-0.5f, -0.5f, 1f, 1f);
 						if (!rec.Contains (newCPos2D)) {
 							return;				
@@ -424,6 +425,7 @@ public class BrickControl : MonoBehaviour
 			//if (!groundBounds.Contains (newChildPosition)) {	
 			Vector3 newCPos = ground.transform.InverseTransformPoint(newChildPosition);
 			Vector2 newCPos2D = new Vector2 (newCPos.x, newCPos.z);
+
 			Rect rec = new Rect (-0.5f, -0.5f, 1f, 1f);
 			if(!rec.Contains(newCPos2D)) {
 				//if at least one cube is out of bounds the rotation is aborted
