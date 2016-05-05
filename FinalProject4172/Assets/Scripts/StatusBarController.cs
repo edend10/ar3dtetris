@@ -16,16 +16,16 @@ public class StatusBarController : MonoBehaviour {
 
 
 	void scaleBoxDown() {
+		if (!Pause.paused) {
+			if (GameController.time < GameController.releaseTimer && GameController.time <= GameController.createTimer) {
+				float f = (1 / GameController.releaseTimer);
 
-		if (GameController.time < GameController.releaseTimer && GameController.time <= GameController.createTimer) {
-			float f = (1 / GameController.releaseTimer);
-
-			if (gameObject.transform.localScale.x > 0)
-				gameObject.transform.localScale -= new Vector3 (f, 0, 0);
-			else {
-				gameObject.transform.localScale = initBarScale;
+				if (gameObject.transform.localScale.x > 0)
+					gameObject.transform.localScale -= new Vector3 (f, 0, 0);
+				else {
+					gameObject.transform.localScale = initBarScale;
+				}
 			}
-
 
 		}
 
