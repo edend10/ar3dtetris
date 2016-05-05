@@ -30,7 +30,10 @@ public class GameController : MonoBehaviour {
 	public static GameObject environment;
 	public static GameObject ground;
 
+	bool paused = false;
 	float timeElapsed = 0f;
+
+	public static bool creatingBrick = false;
 
 	// Use this for initialization
 	void Start () {
@@ -51,7 +54,7 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (!Pause.paused) {
+		if (!paused) {
 			float endTime = Time.time;
 			time = endTime - startTime + timeElapsed;
 			if (time > releaseTimer && time < createTimer) {				
@@ -67,6 +70,7 @@ public class GameController : MonoBehaviour {
 
 			} else if (time > createTimer) {
 				createBrick ();
+				creatingBrick = true; 
 				startTime = Time.time;
 				timeElapsed = 0f;
 			}
@@ -168,8 +172,9 @@ public class GameController : MonoBehaviour {
 		UserInputHandler.OnTap -= mySelect;
 	}
 
-	void pause(){
-		if (Pause.paused) {
+	void pause(bool p){
+		paused = p;
+		if (paused) {
 			float endTime = Time.time;
 			timeElapsed = endTime - startTime;
 		} else {			
