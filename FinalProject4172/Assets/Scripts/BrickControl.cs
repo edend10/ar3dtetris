@@ -428,7 +428,7 @@ public class BrickControl : MonoBehaviour
 		}
 		//end of bounds check
 
-		activeBrick.transform.Rotate (x, y, z, Space.World);
+		activeBrick.transform.Rotate (x, y, z);
 		endRotationPause = Time.time + ROTATION_PAUSE; //set rotation pause to prevent rotating the brick in counter direction when bringing wand back to original orientation
 
 	}
