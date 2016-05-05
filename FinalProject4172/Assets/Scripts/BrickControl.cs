@@ -80,7 +80,8 @@ public class BrickControl : MonoBehaviour
 
 	void Update ()
 	{		
-		if (activeBrick != null && !Pause.paused) {
+		
+		if (activeBrick != null && !Pause.paused && !Pause.targetLost) {
 			Vector3 gridPos1 = activeBrick.transform.localPosition;
 			if (grid != null) {
 				//Debug.Log ("yes");

@@ -21,7 +21,7 @@ public class LevelDestruction : MonoBehaviour {
 	}
 
 	public void CheckIfFull() {
-		if (!Pause.paused) {
+		if (!Pause.paused && !Pause.targetLost) {
 			if (GameController.time > GameController.createTimer) {
 				if (childBlocks.Count >= numToClear) {
 					DestroyLevel ();

@@ -16,7 +16,7 @@ public class StatusBarController : MonoBehaviour {
 
 
 	void scaleBoxDown() {
-		if (!Pause.paused) {
+		if (!Pause.paused && !Pause.targetLost) {
 			if (GameController.time < GameController.releaseTimer && GameController.time <= GameController.createTimer) {
 				float f = (1 / GameController.releaseTimer);
 

@@ -6,12 +6,16 @@ public class Pause : MonoBehaviour {
 	GameObject gameController;
 	TextMesh status;
 
-	public static bool paused = false;
+	public static bool paused = true;
+
+	public static bool targetLost = true;
 
 	// Use this for initialization
 	void Start () {
 		gameController = GameObject.FindGameObjectsWithTag("GameController")[0];
 		status = GameObject.Find("Pause").GetComponent<TextMesh> ();
+		paused = false;
+		targetLost = false;
 	}
 	
 	// Update is called once per frame
@@ -22,15 +26,24 @@ public class Pause : MonoBehaviour {
 	public void youAreSelected(){
 		
 		if (paused) {
-			gameController.SendMessage ("pause");
+			gameController.SendMessage ("pause",false);
 			paused = false;
 			status.text = "Pause";
 		} 
 		else {
-			gameController.SendMessage ("pause");
+			gameController.SendMessage ("pause", true);
 			paused = true;
 			status.text = "Play";
 		}
 		
+	}
+
+	private void OnEnable()
+	{
+		targetLost = false;
+	}
+	private void OnDisable()
+	{
+		targetLost = true;
 	}
 }

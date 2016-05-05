@@ -30,7 +30,6 @@ public class GameController : MonoBehaviour {
 	public static GameObject environment;
 	public static GameObject ground;
 
-	bool paused = false;
 	float timeElapsed = 0f;
 
 	public static bool creatingBrick = false;
@@ -54,7 +53,7 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (!paused) {
+		if (!Pause.paused && !Pause.targetLost) {
 			float endTime = Time.time;
 			time = endTime - startTime + timeElapsed;
 			if (time > releaseTimer && time < createTimer) {				
@@ -173,8 +172,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	void pause(bool p){
-		paused = p;
-		if (paused) {
+		if (Pause.paused) {
 			float endTime = Time.time;
 			timeElapsed = endTime - startTime;
 		} else {			
