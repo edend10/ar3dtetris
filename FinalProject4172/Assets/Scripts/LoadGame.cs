@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class LoadGame : MonoBehaviour {
 
+	public int level;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -15,7 +17,7 @@ public class LoadGame : MonoBehaviour {
 	}
 
 	public void youAreSelected(){
-		LevelController.level = 0;
+		LevelController.level = level;
 		SceneManager.LoadScene ("MainScene");
 	}
 }

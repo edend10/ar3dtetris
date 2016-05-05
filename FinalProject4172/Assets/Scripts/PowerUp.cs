@@ -26,6 +26,7 @@ public class PowerUp : MonoBehaviour {
 	
 
 	void Update () {
+
 			
 		if (powerReady) {
 			Glow (10, 0.5f);
