@@ -832,6 +832,7 @@ Transform:
   - {fileID: 598166693}
   - {fileID: 471097900}
   - {fileID: 830587309}
+  - {fileID: 699504703}
   m_Father: {fileID: 1020357789}
   m_RootOrder: 19
 --- !u!1 &322431048
@@ -2047,6 +2048,82 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!1 &699504702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 699504703}
+  - 23: {fileID: 699504705}
+  - 102: {fileID: 699504704}
+  m_Layer: 0
+  m_Name: page number
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &699504703
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 699504702}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.024, y: -0.406, z: -2.1}
+  m_LocalScale: {x: 0.069371484, y: 0.088415235, z: 2.0510495}
+  m_Children: []
+  m_Father: {fileID: 321261369}
+  m_RootOrder: 5
+--- !u!102 &699504704
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 699504702}
+  m_Text: 1/4
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 0
+  m_Alignment: 0
+  m_TabSize: 4
+  m_FontSize: 7
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190080
+--- !u!23 &699504705
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 699504702}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!21 &717287152
 Material:
   serializedVersion: 6
@@ -2239,6 +2316,7 @@ MonoBehaviour:
   nextLabel: {fileID: 830587308}
   prevLabel: {fileID: 766339272}
   textLabel: {fileID: 1309407751}
+  pageNumberLabel: {fileID: 699504702}
 --- !u!65 &766339274
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2696,6 +2774,7 @@ MonoBehaviour:
   nextLabel: {fileID: 830587308}
   prevLabel: {fileID: 766339272}
   textLabel: {fileID: 1309407751}
+  pageNumberLabel: {fileID: 699504702}
 --- !u!65 &830587311
 BoxCollider:
   m_ObjectHideFlags: 0
