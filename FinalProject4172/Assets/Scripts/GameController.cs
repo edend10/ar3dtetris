@@ -30,7 +30,6 @@ public class GameController : MonoBehaviour {
 	public static GameObject environment;
 	public static GameObject ground;
 
-	bool paused = false;
 	float timeElapsed = 0f;
 
 	// Use this for initialization
@@ -52,7 +51,7 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (!paused) {
+		if (!Pause.paused) {
 			float endTime = Time.time;
 			time = endTime - startTime + timeElapsed;
 			if (time > releaseTimer && time < createTimer) {				
@@ -169,9 +168,8 @@ public class GameController : MonoBehaviour {
 		UserInputHandler.OnTap -= mySelect;
 	}
 
-	void pause(bool p){
-		paused = p;
-		if (paused) {
+	void pause(){
+		if (Pause.paused) {
 			float endTime = Time.time;
 			timeElapsed = endTime - startTime;
 		} else {			

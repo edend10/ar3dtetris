@@ -6,7 +6,7 @@ public class Pause : MonoBehaviour {
 	GameObject gameController;
 	TextMesh status;
 
-	bool paused = false;
+	public static bool paused = false;
 
 	// Use this for initialization
 	void Start () {
@@ -22,12 +22,12 @@ public class Pause : MonoBehaviour {
 	public void youAreSelected(){
 		
 		if (paused) {
-			gameController.SendMessage ("pause", false);
+			gameController.SendMessage ("pause");
 			paused = false;
 			status.text = "Pause";
 		} 
 		else {
-			gameController.SendMessage ("pause", true);
+			gameController.SendMessage ("pause");
 			paused = true;
 			status.text = "Play";
 		}
