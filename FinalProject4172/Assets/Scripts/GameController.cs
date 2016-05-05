@@ -59,13 +59,13 @@ public class GameController : MonoBehaviour {
 				}
 				if (!hasBeenReleased) {
 					releaseBrick ();
-					Debug.Log ("release");
+					//Debug.Log ("release");
 				}
 					
 			} else if (time > createTimer) {
 				if (hasBeenReleased) {
 					createBrick ();
-					Debug.Log ("create");
+					//Debug.Log ("create");
 					startTime = Time.time;
 					timeElapsed = 0f;
 				} else {
@@ -165,10 +165,10 @@ public class GameController : MonoBehaviour {
 		if (Pause.paused) {
 			float endTime = Time.time;
 			timeElapsed = endTime - startTime;
-			Debug.Log ("pause");
+			//Debug.Log ("pause");
 		} else {			
 			startTime = Time.time;
-			Debug.Log ("play");
+			//Debug.Log ("play");
 		}
 	}
 

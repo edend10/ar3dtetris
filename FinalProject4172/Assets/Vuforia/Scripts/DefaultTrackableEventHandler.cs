@@ -87,6 +87,10 @@ namespace Vuforia
 			if (mTrackableBehaviour.TrackableName == "stones") {
 				Pause.targetLost = false;
 			}
+			if (mTrackableBehaviour.TrackableName == "cylinder") {
+				
+				BrickControl.wandTipLost = false;
+			}
         }
 
 
@@ -110,6 +114,9 @@ namespace Vuforia
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
 			if (mTrackableBehaviour.TrackableName == "stones") {
 				Pause.targetLost = true;
+			}
+			if (mTrackableBehaviour.TrackableName == "cylinder") {
+				BrickControl.wandTipLost = true;
 			}
         }
 
