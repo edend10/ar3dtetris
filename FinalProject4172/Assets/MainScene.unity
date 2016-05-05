@@ -871,7 +871,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 322431048}
-  m_Text: Total levels cleared
+  m_Text: Total planes cleared
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -935,7 +935,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 372708013}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1833558, y: 0.9277853, z: 0.20187919}
+  m_LocalPosition: {x: -1.1833558, y: 0.867, z: 0.20187919}
   m_LocalScale: {x: 0.9406419, y: 0.98812854, z: 0.065519445}
   m_Children: []
   m_Father: {fileID: 1020357789}
@@ -1139,8 +1139,8 @@ GameObject:
   - 4: {fileID: 471097900}
   - 23: {fileID: 471097904}
   - 102: {fileID: 471097903}
-  - 65: {fileID: 471097902}
   - 114: {fileID: 471097901}
+  - 65: {fileID: 471097902}
   m_Layer: 0
   m_Name: Back
   m_TagString: Untagged
@@ -1182,8 +1182,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.6000001, y: 1.1499023, z: 0}
+  m_Center: {x: 1.3000005, y: -0.5749531, z: -0.0000009536743}
 --- !u!102 &471097903
 TextMesh:
   serializedVersion: 3
@@ -3297,7 +3297,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 950882250}
   m_LocalRotation: {x: 0.5990237, y: 0, z: 0, w: 0.80073136}
-  m_LocalPosition: {x: 0, y: 15.1, z: -4.1}
+  m_LocalPosition: {x: 0, y: 22.98, z: -6.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 660532628}
