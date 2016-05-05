@@ -5,7 +5,7 @@ public class LevelDestruction : MonoBehaviour {
 
 	ArrayList childBlocks = new ArrayList();
 	GameObject currentChild;
-	int numToClear = 5;
+	int numToClear = 25;
 
 	// Use this for initialization
 	void Start () {
