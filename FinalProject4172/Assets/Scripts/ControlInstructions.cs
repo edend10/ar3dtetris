@@ -7,10 +7,11 @@ public class ControlInstructions : MonoBehaviour {
 
 	public GameObject nextLabel;
 	public GameObject prevLabel;
-
 	public GameObject textLabel;
+	public GameObject pageNumberLabel;
 
 	TextMesh t;
+	TextMesh pageNumber;
 
 	public static int n = 0;
 	string[] texts;
@@ -35,7 +36,6 @@ public class ControlInstructions : MonoBehaviour {
 				"Have fun!\n\n\n";
 	
 
-	// Use this for initialization
 	void Start () {
 		t = textLabel.GetComponent<TextMesh> ();
 		texts = new string[4];
@@ -44,6 +44,8 @@ public class ControlInstructions : MonoBehaviour {
 		texts [2] = t3;
 		texts [3] = t4;
 		t.text = texts[n];
+
+		pageNumber = pageNumberLabel.GetComponent<TextMesh> ();
 	}
 
 	public void youAreSelected(){
@@ -52,6 +54,10 @@ public class ControlInstructions : MonoBehaviour {
 			prevLabel.SetActive (true);
 			n = n+1;
 			t.text = texts [n];
+
+			int page = n + 1;
+			pageNumber.text = page + "/4";
+
 			if (n == texts.Length - 1) {
 				gameObject.SetActive (false);
 			}
@@ -59,10 +65,13 @@ public class ControlInstructions : MonoBehaviour {
 			nextLabel.SetActive (true);
 			n = n-1;
 			t.text = texts [n];
+
+			int page = n + 1;
+			pageNumber.text = page + "/4";
+
 			if (n == 0) {
 				gameObject.SetActive (false);
 			}
 		}
-
 	}
 }
