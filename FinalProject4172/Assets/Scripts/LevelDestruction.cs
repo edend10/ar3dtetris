@@ -12,13 +12,21 @@ public class LevelDestruction : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		InvokeRepeating ("CheckIfFull", 2, 1);
 
 	}
 
-	void CheckIfFull() {
-		if (childBlocks.Count >= numToClear) {
-			DestroyLevel ();
+	void Update() {
+		if (GameController.creatingBrick)
+			CheckIfFull ();
+	}
+
+	public void CheckIfFull() {
+		if (!Pause.paused) {
+			if (GameController.time > GameController.createTimer) {
+				if (childBlocks.Count >= numToClear) {
+					DestroyLevel ();
+				}
+			}
 		}
 	}
 
