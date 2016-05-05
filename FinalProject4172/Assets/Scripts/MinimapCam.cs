@@ -12,6 +12,7 @@ public class MinimapCam : MonoBehaviour {
 	GameObject headShadow;
 
 
+
 	void Start () {
 		
 //		pos = transform.position;
@@ -21,6 +22,8 @@ public class MinimapCam : MonoBehaviour {
 	
 
 	void Update () {
+
+		//show head in edge if out of minimap cam view
 		Vector3 boardToHead = head.transform.position - board.transform.position;
 		planes = GeometryUtility.CalculateFrustumPlanes(minimapCam);
 		float boardToHeadDistance = Vector3.Distance (head.transform.position, board.transform.position);
@@ -35,15 +38,22 @@ public class MinimapCam : MonoBehaviour {
 					if (headShadow == null) {
 						headShadow = Instantiate (headShadowPrefab);					
 					}
+
 					hit = true;
 
+
 					headShadow.transform.position = board.transform.position + hitDist * Vector3.Normalize (boardToHead);
+					//if(hit) 
+						//Debug.Log (board.transform.position + hitDist * Vector3.Normalize (boardToHead) + " - " + headShadow.transform.position);
 				}
 			}
 		}
-		if (!hit) {
+		if (!hit) {			
 			Destroy (headShadow);
 		}
+
+		//move minimap cam if board moves
+
 	}
 
 
