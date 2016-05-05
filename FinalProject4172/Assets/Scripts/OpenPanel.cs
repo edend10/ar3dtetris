@@ -20,9 +20,11 @@ public class OpenPanel : MonoBehaviour {
 
 		if (panel.activeSelf) {
 			panel.SetActive (false);
+			Pause.paused = false;
 			control.SendMessage ("pause", false);
 		} else {
 			panel.SetActive (true);
+			Pause.paused = true;
 			control.SendMessage ("pause", true);
 		}
 	}
