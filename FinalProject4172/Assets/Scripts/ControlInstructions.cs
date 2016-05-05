@@ -21,7 +21,11 @@ public class ControlInstructions : MonoBehaviour {
 		 "seconds, it will start falling down.\n\n\n";
 
 	string t2 = "To move/rotate it, simply move/rotate\n" +
-	            "the wand in the corresponding direction.\n\n\n";
+	            "the wand in the corresponding direction.\n" +
+	            "To move the board use the image target " +
+	            "labeled travel. Slide the target forward\n" +
+	            "or backward to move the board on the z axis.\n" +
+	            "Rotate the target to rotate the board.\n\n\n";
 
 	string t3 = "Should you get lucky (and you probably will)\n" +
 	            "you might see a flashing object from the sky.\n" +
