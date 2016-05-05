@@ -84,6 +84,9 @@ namespace Vuforia
             }
 
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
+			if (mTrackableBehaviour.TrackableName == "stones") {
+				Pause.targetLost = false;
+			}
         }
 
 
@@ -105,6 +108,9 @@ namespace Vuforia
             }
 
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
+			if (mTrackableBehaviour.TrackableName == "stones") {
+				Pause.targetLost = true;
+			}
         }
 
         #endregion // PRIVATE_METHODS

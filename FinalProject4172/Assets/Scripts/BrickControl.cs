@@ -22,9 +22,6 @@ public class BrickControl : MonoBehaviour
 	public GameObject tempGrid;
 	Bounds alignedGroundBounds;
 
-
-	bool paused = false;
-
 	//constants
 	const int AXIS_X = 1;
 	const int AXIS_Y = 2;
@@ -84,7 +81,8 @@ public class BrickControl : MonoBehaviour
 
 	void Update ()
 	{		
-		if (activeBrick != null && !paused) {
+		
+		if (activeBrick != null && !Pause.paused && !Pause.targetLost) {
 			Vector3 gridPos1 = activeBrick.transform.localPosition;
 			if (grid != null) {
 				//Debug.Log ("yes");
@@ -464,10 +462,5 @@ public class BrickControl : MonoBehaviour
 	{
 		activeBrick = null;
 	}
-
-	public void pause(bool p){
-
-		paused = p;
-	}
-	
+		
 }
