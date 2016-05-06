@@ -1,6 +1,9 @@
 # ar3dtetris
 
-https://youtu.be/KAZKCKdfO9I
+Augmented Reality 3D Tetris Game
+Built with: Unity and Vuforia
+
+Video demo: https://youtu.be/KAZKCKdfO9I
 
 a. Team: NoName
 
@@ -28,7 +31,7 @@ h. Special instructions for deploying app
 
 None.
 
-i. Video location: The video is located in the ‘Documents and Media’ folder.
+i. What? Yeah.
 
 j. Instructions to use app 
 
