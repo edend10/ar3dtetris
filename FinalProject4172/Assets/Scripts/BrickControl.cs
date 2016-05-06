@@ -186,7 +186,7 @@ public class BrickControl : MonoBehaviour
 					foreach (Transform c in activeBrick.GetComponentInChildren<Transform>()) {
 						//if at least one brick out of bounds with this grid position abort
 						//if (!groundBounds.Contains (c.position + translateDelta)) {								
-						Vector3 newCPos = c.localPosition + translateDelta;
+						Vector3 newCPos = ground.transform.InverseTransformPoint(c.position) + translateDelta;
 						Vector2 newCPos2D = new Vector2 (newCPos.x, newCPos.z);
 						Debug.Log (newCPos2D);
 						Rect rec = new Rect (-0.5f, -0.5f, 1f, 1f);
